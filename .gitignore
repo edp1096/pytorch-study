@@ -1,0 +1,6 @@
+data/
+__pycache__/
+*.pth
+
+movie_posters/dataset/test_set.csv
+movie_posters/dataset/train_set.csv
