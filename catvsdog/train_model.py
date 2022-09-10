@@ -10,7 +10,7 @@ from torch.utils.data import DataLoader
 import nn_model.network as network
 import nn_model.train as train
 import nn_model.test as test
-import movie_poster
+import pet
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -34,7 +34,7 @@ train_transform = transforms.Compose(
     ]
 )
 
-train_dataset = movie_poster.Dataset(train_csv_fpath, img_dir, train_transform)
+train_dataset = pet.Dataset(train_csv_fpath, img_dir, train_transform)
 train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
 model = network.NeuralNetwork().to(device)

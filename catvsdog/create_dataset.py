@@ -2,7 +2,7 @@ import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 
-import movie_poster
+import pet
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -31,7 +31,7 @@ test_transform = transforms.Compose(
     ]
 )
 
-test_dataset = movie_poster.Dataset(test_set_fpath, img_dir, test_transform)
+test_dataset = pet.Dataset(test_set_fpath, img_dir, test_transform)
 test_dataloader = DataLoader(test_dataset, batch_size=4, shuffle=True)
 
 
