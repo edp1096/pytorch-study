@@ -35,6 +35,7 @@ Each training and test example is assigned to one of the following labels:
 ## Cats vs Dogs
 
 * Source:
-    * https://blog.jovian.ai/image-classification-between-dog-and-cat-using-resnet-in-pytorch-fdd9fdfac20a
-    * https://www.microsoft.com/en-us/download/details.aspx?id=54765
     * https://junstar92.tistory.com/121
+        * https://blog.jovian.ai/image-classification-between-dog-and-cat-using-resnet-in-pytorch-fdd9fdfac20a
+        * https://www.microsoft.com/en-us/download/details.aspx?id=54765
+        * https://nuguziii.github.io/dev/dev-002

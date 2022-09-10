@@ -7,26 +7,27 @@ import numpy as np
 
 
 class Dataset(Dataset):
-    def __init__(self, annotations_file, img_dir, transform=None):
-        self.csv = pd.read_csv(annotations_file, header=0)
+    def __init__(self, img_dir, files, mode="train", transform=None):
+        self.files = files
         self.img_dir = img_dir
-
+        self.mode = mode
         self.transform = transform
-        self.labels = self.csv.drop(["Id", "Genre"], axis="columns")
+
+        self.label = 0  # 0: cat
+        if "dog" in files[0]:
+            self.label = 1
 
     def __len__(self):
-        return len(self.csv)
+        return len(self.files)
 
     def __getitem__(self, idx):
-        img_path = f"{self.img_dir}/{self.csv.iloc[idx, 0]}.jpg"
-        image = read_image(img_path)
-
-        labels = torch.tensor(self.labels.iloc[idx].values, dtype=torch.float32)
+        img_path = f"{self.img_dir}/{self.files[idx]}"
+        img = read_image(img_path)
 
         if self.transform:
-            image = self.transform(image)
+            img = self.transform(img)
 
-        # result = {'image': image,'label':labels}
-        # return result
-
-        return image, labels
+        if self.mode == "train":
+            return img, torch.tensor([self.label])
+        else:
+            return img, self.files[idx]

@@ -5,21 +5,23 @@ from torch.utils.data import DataLoader
 import pet
 
 import pandas as pd
-from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
 
-data_dir = "dataset"
-img_dir = f"{data_dir}/images"
+data_dir = "datas"
+train_dir = f"{data_dir}/train"
+test_dir = f"{data_dir}/test"
 
 batch_size = 32
 test_size = 0.15
 
-all_dataset = pd.read_csv(f"{data_dir}/all_data.csv")
-train_set, test_set = train_test_split(all_dataset, test_size=0.15)
+dog_train_files = [f'dog.{i}.jpg' for i in range(12500)]
+cat_train_files = [f'cat.{i}.jpg' for i in range(12500)]
+dog_valid_files = [f'dog.{i}.jpg' for i in range(2500)]
+cat_valid_files = [f'cat.{i}.jpg' for i in range(2500)]
+dog_test_files = [f'dog.{i+2500}.jpg' for i in range(2500)]
+cat_test_files = [f'cat.{i+2500}.jpg' for i in range(2500)]
 
-pd.DataFrame(train_set).to_csv(f"{data_dir}/train_data.csv", header=True, index=False)
-pd.DataFrame(test_set).to_csv(f"{data_dir}/test_data.csv", header=True, index=False)
 
 test_set_fpath = f"{data_dir}/test_data.csv"
 
@@ -31,7 +33,7 @@ test_transform = transforms.Compose(
     ]
 )
 
-test_dataset = pet.Dataset(test_set_fpath, img_dir, test_transform)
+test_dataset = pet.Dataset(test_set_fpath, train_dir, test_transform)
 test_dataloader = DataLoader(test_dataset, batch_size=4, shuffle=True)
 
 
