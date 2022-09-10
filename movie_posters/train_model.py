@@ -16,7 +16,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-data_dir = "dataset"
+data_dir = "datas"
 img_dir = f"{data_dir}/images"
 
 device = "cuda" if torch.cuda.is_available() else "cpu"

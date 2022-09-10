@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
 
-data_dir = "dataset"
+data_dir = "datas"
 img_dir = f"{data_dir}/images"
 
 batch_size = 32
