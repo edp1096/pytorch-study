@@ -1,4 +1,7 @@
 
+```powershell
+pip install matplotlib ; pip install numpy ; pip install pandas ; pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+```
 
 ## Fashion-MNIST
 
