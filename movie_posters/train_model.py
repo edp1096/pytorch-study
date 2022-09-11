@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 import torchvision
-from torchvision import datasets
+from torchvision import models, datasets
 from torchvision.transforms import ToTensor
 import torchvision.transforms as transforms
 from torchvision.io import read_image
@@ -14,6 +14,11 @@ import movie_poster
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import gc
+
+
+gc.collect()
+torch.cuda.empty_cache()
 
 
 data_dir = "datas"
@@ -37,7 +42,11 @@ train_transform = transforms.Compose(
 train_dataset = movie_poster.Dataset(train_csv_fpath, img_dir, train_transform)
 train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 
-model = network.NeuralNetwork().to(device)
+# model = network.NeuralNetwork().to(device)
+model = torchvision.models.vgg16().to(device)
+
+print(model)
+
 loss_fn = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 
