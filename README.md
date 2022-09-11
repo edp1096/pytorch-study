@@ -36,6 +36,10 @@ Each training and test example is assigned to one of the following labels:
         * https://github.com/pytorch/examples/tree/main/mnist
         * https://uding.tistory.com/44
         * https://korchris.github.io/2019/08/23/mnist
+        * https://discuss.pytorch.org/t/how-to-save-wrong-prediction-results-of-a-cnn-on-mnist/66576
+        * https://github.com/msiddalingaiah/MachineLearning/tree/master/MNIST
+        * https://github.com/krishna-tx/mnist-pytorch
+            * https://www.youtube.com/watch?v=ijaT8HuCtIY
 
 
 ## Movie posters - Custom image dataset
