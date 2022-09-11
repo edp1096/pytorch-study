@@ -8,7 +8,7 @@ from torchvision.io import read_image
 from torch.utils.data import DataLoader
 
 import nn_model.network as network
-import movie_posters.nn_model.fit as fit
+import nn_model.fit as fit
 import nn_model.test as test
 import movie_poster
 
