@@ -1,4 +1,5 @@
 
+
 ## Fashion-MNIST
 
 t10k = Test set 10,000
@@ -21,6 +22,19 @@ Each training and test example is assigned to one of the following labels:
 | 9     | Ankle boot  |
 
 
+## MNIST
+
+* Source:
+    * https://github.com/teavanist/MNIST-JPG
+        * https://wikidocs.net/60324
+        * https://wikidocs.net/63565
+        * https://tensorflow.blog/2017/01/26/pytorch-mnist-example
+        * https://deep-learning-study.tistory.com/459
+        * https://github.com/pytorch/examples/tree/main/mnist
+        * https://uding.tistory.com/44
+        * https://korchris.github.io/2019/08/23/mnist
+
+
 ## Movie posters - Custom image dataset
 
 * Source:
@@ -31,6 +45,7 @@ Each training and test example is assigned to one of the following labels:
         * https://intrepidgeeks.com/tutorial/using-vgg16-to-realize-transfer-learning-with-pytorch
         * https://deep-learning-study.tistory.com/521
         * https://dacon.io/codeshare/2354
+
 
 ## Cats vs Dogs
 
