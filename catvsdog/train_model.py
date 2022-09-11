@@ -102,7 +102,7 @@ model.fc = nn.Sequential(
     nn.Linear(1024, 512),
     nn.Dropout(0.1),
     nn.Linear(512, 1),
-    nn.Sigmoid()
+    nn.Sigmoid(),
 )
 
 model.to(device)
@@ -114,8 +114,8 @@ model.to(device)
 criterion = nn.BCELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
 # optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
- 
-trained_model = fit.run(device, model, criterion, optimizer, 3, train_dataloader, valid_dataloader)
+
+trained_model = fit.run(device, model, criterion, optimizer, 10, train_dataloader, valid_dataloader)
 
 # torch.save(trained_model.state_dict(), "model.pth")
 torch.save(trained_model, "model.pth")

@@ -8,7 +8,7 @@ from torchvision.io import read_image
 from torch.utils.data import DataLoader
 
 import nn_model.network as network
-import nn_model.train as train
+import movie_posters.nn_model.fit as fit
 import nn_model.test as test
 import movie_poster
 
@@ -45,7 +45,7 @@ epochs = 5
 for t in range(epochs):
     print(f"Epoch {t+1}\n-------------------------------")
 
-    train.run(device, train_dataloader, model, loss_fn, optimizer)
+    fit.run(device, train_dataloader, model, loss_fn, optimizer)
 
 print("Training done!")
 
