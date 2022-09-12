@@ -46,13 +46,13 @@ model = net.CNN2().to(device)
 
 summary(model, input_size=(1, 28, 28))  # 모델 정보 출력 (channels, height, width)
 
-criterion = nn.Linear(784, 10, bias=True)
+# criterion = nn.Linear(784, 10, bias=True)
 # criterion = nn.NLLLoss()
-# criterion = nn.CrossEntropyLoss()  # 비용 함수에 소프트맥스 함수 포함되어져 있음
+criterion = nn.CrossEntropyLoss()  # 비용 함수에 소프트맥스 함수 포함되어져 있음
 criterion = criterion.to(device)
 
-# optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+# optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
 total_batch = len(train_loader)
 print("총 배치의 수 : {}".format(total_batch))

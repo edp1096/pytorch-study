@@ -30,7 +30,7 @@ def prepareCustomDatasets(last_num: int, train_transform=None, valid_transform=N
     valid_files = []
     for i in range(0, last_num):
         train_files.append(glob(f"datas/train/{i}/*.jpg"))
-        valid_files.append(glob(f"datas/valid/{i}/*.jpg"))
+        valid_files.append(glob(f"datas/test/{i}/*.jpg"))
 
     train_sets = []
     valid_sets = []
