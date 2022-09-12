@@ -2,5 +2,7 @@ data/
 __pycache__/
 *.pth
 
+runs/
+
 movie_posters/dataset/test_set.csv
 movie_posters/dataset/train_set.csv
