@@ -74,22 +74,16 @@ writer = SummaryWriter("runs/fashion_mnist_experiment_1")
 
 
 # 2. TensorBoard에 기록하기
-# 임의의 학습 이미지를 가져옵니다
+
 dataiter = iter(trainloader)
-images, labels = dataiter.next()
 
-# 이미지 그리드를 만듭니다.
-img_grid = torchvision.utils.make_grid(images)
+images, labels = dataiter.next()  # 임의의 학습 이미지를 가져옵니다
+img_grid = torchvision.utils.make_grid(images)  # 이미지 그리드를 만듭니다.
+matplotlib_imshow(img_grid, one_channel=True)  # 이미지를 보여줍니다.
 
-# 이미지를 보여줍니다.
-matplotlib_imshow(img_grid, one_channel=True)
+writer.add_image("four_fashion_mnist_images", img_grid)  # tensorboard에 기록합니다.
+writer.add_graph(net, images)  # 3. TensorBoard를 사용하여 모델 살펴보기(inspect)
 
-# tensorboard에 기록합니다.
-writer.add_image("four_fashion_mnist_images", img_grid)
-
-
-# 3. TensorBoard를 사용하여 모델 살펴보기(inspect)
-writer.add_graph(net, images)
 writer.close()
 
 
@@ -111,13 +105,12 @@ class_labels = [classes[lab] for lab in labels]  # 각 이미지의 분류 라�
 # 임베딩(embedding) 내역을 기록합니다
 features = images.view(-1, 28 * 28)
 writer.add_embedding(features, metadata=class_labels, label_img=images.unsqueeze(1))
+
 writer.close()
 
 
 # 5. TensorBoard로 모델 학습 추적하기
 # 헬퍼 함수
-
-
 def images_to_probs(net, images):
     """
     학습된 신경망과 이미지 목록으로부터 예측 결과 및 확률을 생성합니다
