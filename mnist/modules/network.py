@@ -2,6 +2,36 @@ from torch import nn
 import torch.nn.functional as FN
 
 
+class LeNet(nn.Module):
+    def __init__(self):
+        super(LeNet, self).__init__()
+        self.l1 = nn.Sequential(
+            nn.Conv2d(1, 6, 5, padding=2),
+            nn.ReLU(),
+            nn.AvgPool2d(2, stride=2),
+        )
+        self.l2 = nn.Sequential(
+            nn.Conv2d(6, 16, 5, padding=0),
+            nn.ReLU(),
+            nn.AvgPool2d(2, stride=2),
+        )
+        self.fc = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(400, 120),
+            nn.ReLU(),
+            nn.Linear(120, 84),
+            nn.ReLU(),
+            nn.Linear(84, 10),
+        )
+
+    def forward(self, x):
+        x = self.l1(x)
+        x = self.l2(x)
+        x = self.fc(x)
+
+        return x
+
+
 class CNN1(nn.Module):
     def __init__(self):
         super(CNN1, self).__init__()
@@ -86,6 +116,7 @@ class CNN2(nn.Module):
         out = self.fc2(out)
 
         return out
+
 
 class CNN3(nn.Module):
     def __init__(self):

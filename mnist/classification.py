@@ -5,6 +5,7 @@ import torch.nn as nn
 
 import modules.dataset as dset
 import modules.network as net
+import modules.fit as fit
 
 import matplotlib.pyplot as plt
 import random
@@ -32,27 +33,28 @@ epochs = 15
 batch_size = 100
 
 # Custom Dataset
-# train_transform = transforms.Compose([transforms.ToTensor()])
-# test_transform = train_transform
+train_transform = transforms.Compose([transforms.ToTensor()])
+test_transform = train_transform
 
-# train_sets = []
-# test_sets = []
-# for i in range(0, 9):
-#     train_sets.append(dset.MNIST(i, train_files[i], transform=train_transform))
-#     test_sets.append(dset.MNIST(i, test_files[i], transform=test_transform))
+train_sets = []
+test_sets = []
+for i in range(0, 9):
+    train_sets.append(dset.MNIST(i, train_files[i], transform=train_transform))
+    test_sets.append(dset.MNIST(i, test_files[i], transform=test_transform))
 
-# train_set = ConcatDataset(train_sets)
-# test_set = ConcatDataset(test_sets)
+train_set = ConcatDataset(train_sets)
+test_set = ConcatDataset(test_sets)
 
 # Torchvision Dataset
-train_set = datasets.MNIST(root="data/MNIST_data/", train=True, transform=transforms.ToTensor(), download=True)
-test_set = datasets.MNIST(root="data/MNIST_data/", train=False, transform=transforms.ToTensor(), download=True)
+# train_set = datasets.MNIST(root="data/MNIST_data/", train=True, transform=transforms.ToTensor(), download=True)
+# test_set = datasets.MNIST(root="data/MNIST_data/", train=False, transform=transforms.ToTensor(), download=True)
 
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True, drop_last=True)
 test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=False, drop_last=True)
 
 # Hidden layer 1 : 32
 # Hidden layer 2 : 32
+# model = net.LeNet().to(device)
 # model = net.CNN1().to(device)
 model = net.CNN2().to(device)
 # model = net.CNN3().to(device)
@@ -63,6 +65,7 @@ model = net.CNN2().to(device)
 # criterion = nn.NLLLoss().to(device)
 criterion = nn.CrossEntropyLoss().to(device)  # 비용 함수에 소프트맥스 함수 포함되어져 있음
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+# optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
 total_batch = len(train_loader)
 print("총 배치의 수 : {}".format(total_batch))

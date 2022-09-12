@@ -3,6 +3,18 @@
 pip install matplotlib ; pip install numpy ; pip install pandas ; pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
 ```
 
+## Lecture, Tutorial
+* https://tutorials.pytorch.kr/beginner/basics/intro.html
+    * https://pytorch.org/tutorials/beginner/basics/intro.html
+* https://wikidocs.net/book/2788
+* https://www.youtube.com/playlist?list=PLQ28Nx3M4JrhkqBVIXg-i5_CVVoS1UzAv
+    * https://deeplearningzerotoall.github.io/season2/lec_pytorch.html
+* https://github.com/Harry24k/Pytorch-Basic
+* https://github.com/mrdbourke/pytorch-deep-learning
+
+* https://github.com/teddylee777/machine-learning
+* https://fleuret.org/dlc
+
 ## Fashion-MNIST
 
 t10k = Test set 10,000
