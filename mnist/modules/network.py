@@ -5,6 +5,7 @@ import torch.nn.functional as FN
 class LeNet(nn.Module):
     def __init__(self):
         super(LeNet, self).__init__()
+
         self.l1 = nn.Sequential(
             nn.Conv2d(1, 6, 5, padding=2),
             nn.ReLU(),
@@ -35,6 +36,7 @@ class LeNet(nn.Module):
 class CNN1(nn.Module):
     def __init__(self):
         super(CNN1, self).__init__()
+
         # 첫번째층
         # ImgIn shape=(?, 28, 28, 1)
         #    Conv     -> (?, 28, 28, 32)
@@ -73,6 +75,7 @@ class CNN1(nn.Module):
 class CNN2(nn.Module):
     def __init__(self):
         super(CNN2, self).__init__()
+
         self.keep_prob = 0.5
         # L1 ImgIn shape=(?, 28, 28, 1)
         #    Conv     -> (?, 28, 28, 32)
@@ -121,6 +124,7 @@ class CNN2(nn.Module):
 class CNN3(nn.Module):
     def __init__(self):
         super(CNN3, self).__init__()
+
         self.conv1 = nn.Conv2d(1, 20, 5, 1)
         self.conv2 = nn.Conv2d(20, 50, 5, 1)
         self.fc1 = nn.Linear(4 * 4 * 50, 500)
