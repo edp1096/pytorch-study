@@ -19,13 +19,13 @@ use_torchvision_dataset = False
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Device:", device)
 
-# random.seed(777)
-# torch.manual_seed(777)
-# if device == "cuda":
-#     torch.cuda.manual_seed_all(777)
+random.seed(777)
+torch.manual_seed(777)
+if device == "cuda":
+    torch.cuda.manual_seed_all(777)
 
 
-epochs = 3
+epochs = 5
 batch_size = 100
 learning_rate = 0.001
 
@@ -66,5 +66,6 @@ for epoch in range(epochs):
 
 print("Training done!")
 
-torch.save(model.state_dict(), "model.pth")
-print("Saved PyTorch Model State to model.pth")
+fname = "model_mnist.pt"
+torch.save(model.state_dict(), fname)
+print(f"Saved PyTorch Model State to {fname}")

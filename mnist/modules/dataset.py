@@ -12,7 +12,7 @@ class MNIST(Dataset):
         self.label = label
         self.transform = transform
 
-        # print(f"MNIST: {label} {len(files)}")
+        print(f"MNIST: {label} {len(files)}")
 
     def __len__(self):
         return len(self.files)

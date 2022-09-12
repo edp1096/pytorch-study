@@ -28,9 +28,10 @@ model = net.CNN2().to(device)
 model.load_state_dict(torch.load("model.pth"))
 model.eval()
 
-labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+classes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 r = random.randint(0, len(test_data) - 1)
+# x, y = test_data[r][0], test_data[r][1]
 image, label = test_data[r][0].to(device), test_data[r][1]
 with torch.no_grad():
     if use_torchvision_dataset:
@@ -38,7 +39,9 @@ with torch.no_grad():
     else:
         pred = model(image.float().unsqueeze(dim=0))
 
-    predicted, actual = labels[pred[0].argmax(0)], labels[label]
+    predicted, actual = classes[pred[0].argmax(0)], classes[label]
+
+    print(pred)
     print(f'Index: "{r}", Predicted: "{predicted}", Actual: "{actual}"')
 
     plt.imshow(image.view(28, 28).cpu().numpy(), cmap="Greys", interpolation="nearest")
