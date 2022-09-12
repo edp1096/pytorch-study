@@ -11,13 +11,13 @@ import random
 from glob import glob
 
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Device:", device)
 
-# random.seed(777)
-# torch.manual_seed(777)
-# if device == "cuda":
-#     torch.cuda.manual_seed_all(777)
+random.seed(777)
+torch.manual_seed(777)
+if device == "cuda":
+    torch.cuda.manual_seed_all(777)
 
 
 train_files = []
@@ -27,8 +27,8 @@ for i in range(0, 9):
     test_files.append(glob(f"datas/test/{i}/*.jpg"))
 
 learning_rate = 0.001
-# epochs = 15
-epochs = 3
+epochs = 15
+# epochs = 3
 batch_size = 100
 
 # Custom Dataset
@@ -49,7 +49,7 @@ train_set = datasets.MNIST(root="data/MNIST_data/", train=True, transform=transf
 test_set = datasets.MNIST(root="data/MNIST_data/", train=False, transform=transforms.ToTensor(), download=True)
 
 train_loader = DataLoader(dataset=train_set, batch_size=batch_size, shuffle=True, drop_last=True)
-test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=True, drop_last=True)
+test_loader = DataLoader(dataset=test_set, batch_size=batch_size, shuffle=False, drop_last=True)
 
 # Hidden layer 1 : 32
 # Hidden layer 2 : 32
