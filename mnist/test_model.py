@@ -35,12 +35,12 @@ else:
     test_data = dset.prepareCustomDataset(9, "datas/test", test_transform)
 
 # model = nn.Linear(784, 10, bias=True) # linear
-model = net.CNN2()  # cnn
+# model = net.CNN2()  # cnn
 
 # vgg
-# model = models.vgg11()
-# model.features[0] = nn.Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), bias=False)
-# model.classifier[6] = nn.Linear(4096, 10)
+model = models.vgg11()
+model.features[0] = nn.Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), bias=False)
+model.classifier[6] = nn.Linear(4096, 10)
 
 # resnet
 # model = models.resnet18()
@@ -63,10 +63,11 @@ with torch.no_grad():
         # pred = model(image.float().to(device)) # linear
         pred = model(image.float().unsqueeze(dim=0).to(device))  # cnn
 
-predicted, actual = classes[pred[0].argmax(0)], classes[label]
-accuracy = (255 - pred[0].cpu().numpy()[predicted]) / 255
+predicted, actual = classes[pred[0].argmax(0).cpu().numpy()], classes[label]
+probability = (255 - pred[0].cpu().numpy()[predicted]) / 255
 
-print(f"Index: {r}, Accuracy(%) / Tensor: {accuracy:.2f}% / {pred[0].cpu().numpy()[predicted]:.2f}, Predicted: {predicted}, Actual: {actual}")
+print(pred, classes, pred[0].argmax(0).cpu().numpy())
+print(f"Index: {r}, Probability(%) / Tensor: {probability * 100:.2f}% / {pred[0].cpu().numpy()[predicted]:.2f}, Predicted: {predicted}, Actual: {actual}")
 
 plt.imshow(image.view(28, 28).cpu().numpy(), cmap="Greys", interpolation="nearest")
 plt.show()

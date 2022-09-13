@@ -79,4 +79,8 @@ Each training and test example is assigned to one of the following labels:
 
 ## Todo
 
+* What is padding?
+    * https://wegonnamakeit.tistory.com/48
+* https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html
+    * https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
 * https://github.com/facebookresearch/faiss
