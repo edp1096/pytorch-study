@@ -55,6 +55,9 @@ Each training and test example is assigned to one of the following labels:
             * https://www.youtube.com/watch?v=ijaT8HuCtIY
         * https://junstar92.tistory.com/116
         * https://ninejy.tistory.com/26
+    * https://www.kaggle.com/code/kkaiwwang/99-67-no-cheating-multi-simple-cnn-model
+        * https://paperswithcode.com/paper/an-ensemble-of-simple-convolutional-neural
+    * https://ddtxrx.tistory.com/entry/PyTorch-MNIST-1
 
 
 ## Bees or ants
@@ -87,17 +90,29 @@ Each training and test example is assigned to one of the following labels:
         * https://blog.jovian.ai/image-classification-between-dog-and-cat-using-resnet-in-pytorch-fdd9fdfac20a
         * https://www.microsoft.com/en-us/download/details.aspx?id=54765
         * https://nuguziii.github.io/dev/dev-002
+        * https://inside-machinelearning.com/en/easy-tutorial-object-detection-on-image-in-pytorch-part-2/
 
 
 ## Todo
 
+* RNN
+    * https://tutorials.pytorch.kr/intermediate/char_rnn_classification_tutorial
+    * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
+    * https://notebook.community/jhjungCode/pytorch-tutorial/16_MNIST-RNN(LSTM)
+
 * SSD - Single Shot MultiBox Detector
+    * https://sajalsharma.com/portfolio/digit_sequence_recognition
+    * https://www.kaggle.com/code/franklemuchahary/mnist-digit-recognition-using-pytorch/notebook
+    * https://github.com/PAN001/MNIST-digit-sequence-recognition
+    * https://towardsdatascience.com/learning-note-single-shot-multibox-detector-with-pytorch-part-1-38185e84bd79
+    * https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection
+    * https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
+    * https://www.ijert.org/multi-digit-number-classification-using-mnist-and-ann
     * https://foss4g.tistory.com/1646
     * https://taeu.github.io/paper/deeplearning-paper-ssd
     * https://herbwood.tistory.com/15
     * https://www.kaggle.com/code/thongnon1996/object-detection-mnist-ssd-pytorch-from-scratch
     * https://github.com/amdegroot/ssd.pytorch
-    * https://towardsdatascience.com/learning-note-single-shot-multibox-detector-with-pytorch-part-1-38185e84bd79
     * https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
     * https://pytorch.org/vision/stable/generated/torchvision.datasets.VOCDetection.html
     * https://deep-learning-study.tistory.com/612
@@ -109,7 +124,10 @@ Each training and test example is assigned to one of the following labels:
     * https://leedakyeong.tistory.com/entry/Object-Detection-YOLO-v1v6-%EB%B9%84%EA%B5%902
     * https://arxiv.org/abs/2207.02696
 
+    * https://github.com/PaddlePaddle/PaddleDetection
     * https://cocodataset.org
+    * https://github.com/cocodataset/cocoapi
+    * https://velog.io/@dkdk6638/Pytorch-COCO-Dataset
 
 
 * What is padding?
@@ -126,3 +144,5 @@ Each training and test example is assigned to one of the following labels:
     * https://deview.kr/data/deview/2019/presentation/[115]%EC%96%B4%EB%94%94%EA%B9%8C%EC%A7%80+%EA%B9%8E%EC%95%84%EB%B4%A4%EB%8B%88_%EB%AA%A8%EB%B0%94%EC%9D%BC+%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC+%EC%9C%84%ED%95%9C+%EA%B0%80%EB%B2%BC%EC%9A%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80+%EC%9D%B8%EC%8B%9D_%EA%B2%80%EC%B6%9C+%EB%94%A5%EB%9F%AC%EB%8B%9D+%EB%AA%A8%EB%8D%B8.pdf
     * https://arxiv.org/pdf/1810.00736.pdf
     * https://www.kaggle.com/code/famadio/ocr-with-pytorch/notebook
+    * https://github.com/courao/ocr.pytorch
+    * https://deepayan137.github.io/blog/markdown/2020/08/29/building-ocr.html
