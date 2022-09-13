@@ -9,7 +9,8 @@ def run(device, dataloader, model, loss_fn):
 
     with torch.no_grad():
         for X, y in dataloader:
-            X, y = X.to(device), y.to(device)
+            X, y = X.view(-1, 28 * 28).to(device), y.to(device)  # softmax
+            # X, y = X.to(device), y.to(device) # cnn
             pred = model(X.float())
             valid_loss += loss_fn(pred, y).item()
 
@@ -17,4 +18,4 @@ def run(device, dataloader, model, loss_fn):
 
     valid_loss /= num_batches
     correct /= size
-    print(f"Validation Error: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {valid_loss:>8f} \n")
+    print(f"Validation: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {valid_loss:>8f} \n")

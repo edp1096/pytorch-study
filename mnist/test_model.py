@@ -1,4 +1,5 @@
 import torch
+import torch.nn as nn
 from torchvision import datasets, transforms
 from torchvision.transforms import ToTensor
 
@@ -22,7 +23,8 @@ else:
     test_data = dset.getTestDataset(9, transform=ToTensor())
     test_data = dset.prepareCustomDataset(9, "datas/test", transforms.ToTensor(), transforms.ToTensor())
 
-model = net.CNN2().to(device)
+model = nn.Linear(784, 10, bias=True).to(device)
+# model = net.CNN2().to(device)
 model.load_state_dict(torch.load(model_fname))
 model.eval()
 

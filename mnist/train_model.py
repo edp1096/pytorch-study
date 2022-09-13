@@ -1,13 +1,13 @@
 import torch
+import torch.nn as nn
+from torch.utils.data import DataLoader, ConcatDataset
+from torchsummary import summary
 from torchvision import datasets, transforms
 from torchvision.transforms import ToTensor
-from torch.utils.data import DataLoader, ConcatDataset
-import torch.nn as nn
-from torchsummary import summary
 
 import modules.dataset as dset
-import modules.network as net
 import modules.fit as fit
+import modules.network as net
 import modules.valid as valid
 
 import matplotlib.pyplot as plt
@@ -27,7 +27,7 @@ if device == "cuda":
     torch.cuda.manual_seed_all(777)
 
 
-epochs = 15
+epochs = 5
 batch_size = 100
 learning_rate = 0.001
 
@@ -43,16 +43,16 @@ else:
 train_loader, valid_loader = dset.getDataLoaders(train_set, valid_set, batch_size, batch_size)
 
 
-# criterion = nn.Linear(784, 10, bias=True)
+model = nn.Linear(784, 10, bias=True).to(device)
 # criterion = nn.NLLLoss()
 # optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
-model = net.CNN2().to(device)
+# model = net.CNN2().to(device)
 criterion = nn.CrossEntropyLoss().to(device)  # 비용 함수에 소프트맥스 함수 포함되어져 있음
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 total_batch = len(train_loader)
 
-summary(model, input_size=(1, 28, 28))  # 모델 정보 출력 (channels, height, width)
+# summary(model, input_size=(1, 28, 28))  # 모델 정보 출력 (channels, height, width)
 print("총 배치의 수 : {}".format(total_batch))
 
 # 훈련 시작
