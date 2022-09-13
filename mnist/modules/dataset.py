@@ -12,7 +12,7 @@ class MNIST(Dataset):
         self.label = label
         self.transform = transform
 
-        print(f"MNIST: {label} {len(files)}")
+        # print(f"MNIST: {label} {len(files)}")
 
     def __len__(self):
         return len(self.files)
@@ -25,40 +25,28 @@ class MNIST(Dataset):
         return image, label
 
 
-def prepareCustomDatasets(last_num: int, train_transform=None, valid_transform=None):
-    train_files = []
-    valid_files = []
+def prepareCustomDataset(last_num: int, data_path, train_transform=None, valid_transform=None):
+    data_files = []
     for i in range(0, last_num):
-        train_files.append(glob(f"datas/train/{i}/*.jpg"))
-        valid_files.append(glob(f"datas/test/{i}/*.jpg"))
+        data_files.append(glob(f"{data_path}/{i}/*.jpg"))
 
-    train_sets = []
-    valid_sets = []
+    data_sets = []
     for i in range(0, last_num):
-        train_sets.append(MNIST(i, train_files[i], transform=train_transform))
-        valid_sets.append(MNIST(i, valid_files[i], transform=valid_transform))
+        data_sets.append(MNIST(i, data_files[i], transform=train_transform))
 
-    train_set = ConcatDataset(train_sets)
-    valid_set = ConcatDataset(valid_sets)
+    train_set = ConcatDataset(data_sets)
 
-    return train_set, valid_set
+    return train_set
 
 
-def prepareTorchvisionDatasets(train_transform=None, valid_transform=None):
+def prepareTorchvisionDataset(train_transform=None, valid_transform=None):
     train_set = datasets.MNIST(root="data/MNIST_data/", train=True, transform=train_transform, download=True)
     valid_set = datasets.MNIST(root="data/MNIST_data/", train=False, transform=valid_transform, download=True)
 
     return train_set, valid_set
 
 
-def getDataLoaders(train_set, test_set, batch_size_train, batch_size_test):
-    train_loader = torch.utils.data.DataLoader(dataset=train_set, batch_size=batch_size_train, shuffle=True)
-    valid_loader = torch.utils.data.DataLoader(dataset=test_set, batch_size=batch_size_test, shuffle=False)
-
-    return train_loader, valid_loader
-
-
-def getTestData(last_num=9, transform=None):
+def getTestDataset(last_num=9, transform=None):
     test_files = []
     for i in range(0, last_num):
         test_files.append(glob(f"datas/test/{i}/*.jpg"))
@@ -70,3 +58,10 @@ def getTestData(last_num=9, transform=None):
     test_set = ConcatDataset(test_sets)
 
     return test_set
+
+
+def getDataLoaders(train_set, test_set, batch_size_train, batch_size_test):
+    train_loader = torch.utils.data.DataLoader(dataset=train_set, batch_size=batch_size_train, shuffle=True)
+    valid_loader = torch.utils.data.DataLoader(dataset=test_set, batch_size=batch_size_test, shuffle=False)
+
+    return train_loader, valid_loader
