@@ -45,14 +45,14 @@ train_loader, valid_loader = dset.getDataLoaders(train_set, valid_set, batch_siz
 # model = net.CNN2()  # cnn
 
 # vgg
-model = models.vgg11()
-model.features[0] = nn.Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(5, 5), bias=False)
-model.classifier[6] = nn.Linear(4096, 10)
+# model = models.vgg11()
+# model.features[0] = nn.Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), bias=False)
+# model.classifier[6] = nn.Linear(4096, 10)
 
 # resnet
-# model = models.resnet18()
-# model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-# model.fc = nn.Linear(512, 10)
+model = models.resnet18()
+model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+model.fc = nn.Linear(512, 10)
 
 model.to(device)
 # print(model)

@@ -38,14 +38,14 @@ else:
 # model = net.CNN2()  # cnn
 
 # vgg
-model = models.vgg11()
-model.features[0] = nn.Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), bias=False)
-model.classifier[6] = nn.Linear(4096, 10)
+# model = models.vgg11()
+# model.features[0] = nn.Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), bias=False)
+# model.classifier[6] = nn.Linear(4096, 10)
 
 # resnet
-# model = models.resnet18()
-# model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-# model.fc = nn.Linear(512, 10)
+model = models.resnet18()
+model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+model.fc = nn.Linear(512, 10)
 
 model.to(device)
 model.load_state_dict(torch.load(model_fname))
@@ -53,21 +53,22 @@ model.eval()
 
 classes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 r = random.randint(0, len(test_data) - 1)
+
 # image, label = test_data[r][0].view(-1, 28 * 28), test_data[r][1]  # linear
-image, label = test_data[r][0], test_data[r][1]  # cnn
+image, label = test_data[r][0], test_data[r][1]
 
 with torch.no_grad():
     if use_torchvision_dataset:
         pred = model(image.unsqueeze(dim=0)).to(device)
     else:
         # pred = model(image.float().to(device)) # linear
-        pred = model(image.float().unsqueeze(dim=0).to(device))  # cnn
+        pred = model(image.float().unsqueeze(dim=0).to(device))
 
 predicted, actual = classes[pred[0].argmax(0).cpu().numpy()], classes[label]
 probability = (255 - pred[0].cpu().numpy()[predicted]) / 255
 
 print(pred, classes, pred[0].argmax(0).cpu().numpy())
-print(f"Index: {r}, Probability(%) / Tensor: {probability * 100:.2f}% / {pred[0].cpu().numpy()[predicted]:.2f}, Predicted: {predicted}, Actual: {actual}")
+print(f"Index: {r}, Probability(%): {probability * 100:.2f}%, Tensor: {pred[0].cpu().numpy()[predicted]:.2f}, Predicted: {predicted}, Actual: {actual}")
 
 plt.imshow(image.view(28, 28).cpu().numpy(), cmap="Greys", interpolation="nearest")
 plt.show()

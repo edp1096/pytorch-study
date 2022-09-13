@@ -6,7 +6,6 @@ def run(device, loader, model, loss_fn, optimizer):
         X, y = X.to(device), y.to(device)
 
         # 예측 오류 계산
-        # pred = model(X)
         pred = model(X.float())
         loss = loss_fn(pred, y)
 
