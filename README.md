@@ -54,6 +54,7 @@ Each training and test example is assigned to one of the following labels:
         * https://github.com/krishna-tx/mnist-pytorch
             * https://www.youtube.com/watch?v=ijaT8HuCtIY
         * https://junstar92.tistory.com/116
+        * https://ninejy.tistory.com/26
 
 
 ## Movie posters - Custom image dataset
