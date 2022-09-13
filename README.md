@@ -97,8 +97,10 @@ Each training and test example is assigned to one of the following labels:
 
 * RNN
     * https://tutorials.pytorch.kr/intermediate/char_rnn_classification_tutorial
-    * https://velog.io/@sjinu/Pytorch-Implementation-code
     * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
+    * https://coding-yoon.tistory.com/131
+    * https://eunhye-zz.tistory.com/entry/Pytorch%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-Timeseries-%EC%98%88%EC%B8%A1-%EB%AA%A8%EB%8D%B81-LSTM
+    * https://velog.io/@sjinu/Pytorch-Implementation-code
 
 * SSD - Single Shot MultiBox Detector
     * https://github.com/dredwardhyde/crnn-ctc-loss-pytorch
