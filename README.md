@@ -6,6 +6,7 @@ pip install matplotlib ; pip install numpy ; pip install pandas ; pip install to
 ## Lecture, Tutorial
 * https://tutorials.pytorch.kr/beginner/basics/intro.html
     * https://pytorch.org/tutorials/beginner/basics/intro.html
+* https://atcold.github.io/pytorch-Deep-Learning/ko
 * https://wikidocs.net/book/2788
 * https://www.youtube.com/playlist?list=PLQ28Nx3M4JrhkqBVIXg-i5_CVVoS1UzAv
     * https://deeplearningzerotoall.github.io/season2/lec_pytorch.html
