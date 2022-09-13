@@ -55,7 +55,7 @@ model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3)
 model.fc = nn.Linear(512, 10)
 
 model.to(device)
-# print(model)
+print(model)
 
 # summary(model, input_size=(batch_size, 1, 28 * 28))  # linear. 모델 정보 출력 (channels, height, width)
 summary(model, input_size=(batch_size, 1, 28, 28))  # cnn
