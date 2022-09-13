@@ -2,8 +2,8 @@ def run(device, loader, model, loss_fn, optimizer):
     size = len(loader.dataset)
 
     for batch, (X, y) in enumerate(loader):
-        X, y = X.view(-1, 28 * 28).to(device), y.to(device)  # softmax
-        # X, y = X.to(device), y.to(device) # cnn
+        # X, y = X.view(-1, 28 * 28).to(device), y.to(device)  # linear
+        X, y = X.to(device), y.to(device)
 
         # 예측 오류 계산
         # pred = model(X)

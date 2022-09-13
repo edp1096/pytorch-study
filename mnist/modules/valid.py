@@ -9,8 +9,9 @@ def run(device, dataloader, model, loss_fn):
 
     with torch.no_grad():
         for X, y in dataloader:
-            X, y = X.view(-1, 28 * 28).to(device), y.to(device)  # softmax
-            # X, y = X.to(device), y.to(device) # cnn
+            # X, y = X.view(-1, 28 * 28).to(device), y.to(device)  # linear
+            X, y = X.to(device), y.to(device)
+
             pred = model(X.float())
             valid_loss += loss_fn(pred, y).item()
 

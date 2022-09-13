@@ -25,14 +25,14 @@ class MNIST(Dataset):
         return image, label
 
 
-def prepareCustomDataset(last_num: int, data_path, train_transform=None, valid_transform=None):
+def prepareCustomDataset(last_num: int, data_path, transform=None):
     data_files = []
     for i in range(0, last_num):
         data_files.append(glob(f"{data_path}/{i}/*.jpg"))
 
     data_sets = []
     for i in range(0, last_num):
-        data_sets.append(MNIST(i, data_files[i], transform=train_transform))
+        data_sets.append(MNIST(i, data_files[i], transform=transform))
 
     train_set = ConcatDataset(data_sets)
 
@@ -44,20 +44,6 @@ def prepareTorchvisionDataset(train_transform=None, valid_transform=None):
     valid_set = datasets.MNIST(root="data/MNIST_data/", train=False, transform=valid_transform, download=True)
 
     return train_set, valid_set
-
-
-def getTestDataset(last_num=9, transform=None):
-    test_files = []
-    for i in range(0, last_num):
-        test_files.append(glob(f"datas/test/{i}/*.jpg"))
-
-    test_sets = []
-    for i in range(0, last_num):
-        test_sets.append(MNIST(i, test_files[i], transform=transform))
-
-    test_set = ConcatDataset(test_sets)
-
-    return test_set
 
 
 def getDataLoaders(train_set, test_set, batch_size_train, batch_size_test):

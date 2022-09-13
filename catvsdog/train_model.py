@@ -6,7 +6,7 @@ from torchvision.transforms import ToTensor
 import torchvision.transforms as transforms
 from torchvision.io import read_image
 from torch.utils.data import DataLoader, ConcatDataset
-from torchsummary import summary
+from torchinfo import summary
 
 import nn_model.network as network
 import nn_model.train as train

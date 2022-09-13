@@ -53,6 +53,7 @@ Each training and test example is assigned to one of the following labels:
         * https://github.com/msiddalingaiah/MachineLearning/tree/master/MNIST
         * https://github.com/krishna-tx/mnist-pytorch
             * https://www.youtube.com/watch?v=ijaT8HuCtIY
+        * https://junstar92.tistory.com/116
 
 
 ## Movie posters - Custom image dataset
@@ -74,3 +75,8 @@ Each training and test example is assigned to one of the following labels:
         * https://blog.jovian.ai/image-classification-between-dog-and-cat-using-resnet-in-pytorch-fdd9fdfac20a
         * https://www.microsoft.com/en-us/download/details.aspx?id=54765
         * https://nuguziii.github.io/dev/dev-002
+
+
+## Todo
+
+* https://github.com/facebookresearch/faiss
