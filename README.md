@@ -57,6 +57,13 @@ Each training and test example is assigned to one of the following labels:
         * https://ninejy.tistory.com/26
 
 
+## Bees or ants
+* Source:
+    * https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html
+    * https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
+    * https://blogofth-lee.tistory.com/268
+
+
 ## Movie posters - Custom image dataset
 
 * Source:
@@ -67,6 +74,10 @@ Each training and test example is assigned to one of the following labels:
         * https://intrepidgeeks.com/tutorial/using-vgg16-to-realize-transfer-learning-with-pytorch
         * https://deep-learning-study.tistory.com/521
         * https://dacon.io/codeshare/2354
+    * https://youtu.be/is_Vw-aJMg4
+    * https://discuss.pytorch.org/t/what-kind-of-loss-is-better-to-use-in-multilabel-classification/32203
+    * https://stackoverflow.com/questions/52855843/multi-label-classification-in-pytorch
+    * https://ko.taphoamini.com/multi-label-classification-yeje
 
 
 ## Cats vs Dogs
@@ -80,8 +91,38 @@ Each training and test example is assigned to one of the following labels:
 
 ## Todo
 
+* SSD - Single Shot MultiBox Detector
+    * https://foss4g.tistory.com/1646
+    * https://taeu.github.io/paper/deeplearning-paper-ssd
+    * https://herbwood.tistory.com/15
+    * https://www.kaggle.com/code/thongnon1996/object-detection-mnist-ssd-pytorch-from-scratch
+    * https://github.com/amdegroot/ssd.pytorch
+    * https://towardsdatascience.com/learning-note-single-shot-multibox-detector-with-pytorch-part-1-38185e84bd79
+    * https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
+    * https://pytorch.org/vision/stable/generated/torchvision.datasets.VOCDetection.html
+    * https://deep-learning-study.tistory.com/612
+    * https://velog.io/@minkyu4506/PyTorch%EB%A1%9C-YOLOv1-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
+    * https://velog.io/@skhim520/YOLO-v1-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0-%EB%B0%8F-%EC%BD%94%EB%93%9C-%EA%B5%AC%ED%98%84
+    * https://wandb.ai/wandb_fc/korean/reports/Windows-YOLOv5---VmlldzoxODc3MjE1
+    * https://wandb.ai/wandb_fc/korean/reports/PyTorch-YOLOv5---VmlldzoxODc3Mzk5
+    * https://eehoeskrap.tistory.com/651
+    * https://leedakyeong.tistory.com/entry/Object-Detection-YOLO-v1v6-%EB%B9%84%EA%B5%902
+    * https://arxiv.org/abs/2207.02696
+
+    * https://cocodataset.org
+
+
 * What is padding?
     * https://wegonnamakeit.tistory.com/48
 * https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html
     * https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
 * https://github.com/facebookresearch/faiss
+* ViT
+    * https://blog.kubwa.co.kr/%EB%85%BC%EB%AC%B8%EB%A6%AC%EB%B7%B0-a-convnet-for-the-2020s-9b45ac666d04
+
+* Etc.
+    * https://codetorial.net/tensorflow/index.html
+    * https://github.com/albumentations-team/albumentations
+    * https://deview.kr/data/deview/2019/presentation/[115]%EC%96%B4%EB%94%94%EA%B9%8C%EC%A7%80+%EA%B9%8E%EC%95%84%EB%B4%A4%EB%8B%88_%EB%AA%A8%EB%B0%94%EC%9D%BC+%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC+%EC%9C%84%ED%95%9C+%EA%B0%80%EB%B2%BC%EC%9A%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80+%EC%9D%B8%EC%8B%9D_%EA%B2%80%EC%B6%9C+%EB%94%A5%EB%9F%AC%EB%8B%9D+%EB%AA%A8%EB%8D%B8.pdf
+    * https://arxiv.org/pdf/1810.00736.pdf
+    * https://www.kaggle.com/code/famadio/ocr-with-pytorch/notebook
