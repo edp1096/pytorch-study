@@ -99,6 +99,7 @@ Each training and test example is assigned to one of the following labels:
     * https://github.com/dredwardhyde/crnn-ctc-loss-pytorch
         * https://medium.com/swlh/multi-digit-sequence-recognition-with-crnn-and-ctc-loss-using-pytorch-framework-269a7aca2a6
     * https://github.com/PAN001/MNIST-digit-sequence-recognition
+    * https://velog.io/@cha-suyeon/%EB%94%A5%EB%9F%AC%EB%8B%9D-OCR3-
     * https://www.deeplearningwizard.com/deep_learning/practical_pytorch/pytorch_recurrent_neuralnetwork/#step-1-loading-mnist-train-dataset
     * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
     * https://velog.io/@sjinu/Pytorch-Implementation-code
@@ -155,3 +156,6 @@ Each training and test example is assigned to one of the following labels:
     * https://deview.kr/data/deview/2019/presentation/[115]%EC%96%B4%EB%94%94%EA%B9%8C%EC%A7%80+%EA%B9%8E%EC%95%84%EB%B4%A4%EB%8B%88_%EB%AA%A8%EB%B0%94%EC%9D%BC+%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC+%EC%9C%84%ED%95%9C+%EA%B0%80%EB%B2%BC%EC%9A%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80+%EC%9D%B8%EC%8B%9D_%EA%B2%80%EC%B6%9C+%EB%94%A5%EB%9F%AC%EB%8B%9D+%EB%AA%A8%EB%8D%B8.pdf
     * https://github.com/YuvalNirkin/fsgan
     * https://arxiv.org/pdf/1810.00736.pdf
+    * https://velog.io/@0ju-un/PyTorch%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-FPN%EC%9C%BC%EB%A1%9C-%ED%95%9C%EA%B8%80-%EC%86%90%EA%B8%80%EC%94%A8%EC%97%90%EC%84%9C-%EC%9E%90%EB%AA%A8-%EB%B6%84%EB%A5%98%ED%95%98%EA%B8%B0-dataset-%EC%A0%9C%EC%9E%91%EB%B6%80%ED%84%B0-%EB%AA%A8%EB%8D%B8-%ED%95%99%EC%8A%B5-%EC%98%88%EC%B8%A1%EA%B9%8C%EC%A7%80
+    * https://cvml.tistory.com/22
+    * https://github.com/fchollet/deep-learning-models
