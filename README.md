@@ -131,6 +131,11 @@ Each training and test example is assigned to one of the following labels:
 * Transformer
     * https://github.com/huggingface/transformers
     * https://github.com/moyix/fauxpilot
+    * https://github.com/microsoft/CodeBERT
+        * https://ebbnflow.tistory.com/151
+        * https://tutorials.pytorch.kr/intermediate/dynamic_quantization_bert_tutorial.html
+        * https://velog.io/@lgd1820/pytorch%EB%A1%9C-BERT-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B013
+        * https://inhyeokyoo.github.io/project/nlp/bert-issue
 
 * ViT
     * https://github.com/jeonsworld/ViT-pytorch
