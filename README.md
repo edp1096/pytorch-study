@@ -95,7 +95,7 @@ Each training and test example is assigned to one of the following labels:
 
 ## Todo
 
-* RNN
+* RNN/LSTM/GRU
     * https://tutorials.pytorch.kr/intermediate/char_rnn_classification_tutorial
     * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
     * https://coding-yoon.tistory.com/131
