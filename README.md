@@ -95,56 +95,61 @@ Each training and test example is assigned to one of the following labels:
 
 ## Todo
 
-* RNN/LSTM/GRU
-    * https://tutorials.pytorch.kr/intermediate/char_rnn_classification_tutorial
-    * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
-    * https://coding-yoon.tistory.com/131
-    * https://eunhye-zz.tistory.com/entry/Pytorch%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-Timeseries-%EC%98%88%EC%B8%A1-%EB%AA%A8%EB%8D%B81-LSTM
-    * https://velog.io/@sjinu/Pytorch-Implementation-code
-
-* SSD - Single Shot MultiBox Detector
+* CRNN, CTC, RNN/LSTM/GRU
     * https://github.com/dredwardhyde/crnn-ctc-loss-pytorch
-    * https://sajalsharma.com/portfolio/digit_sequence_recognition
-    * https://www.kaggle.com/code/franklemuchahary/mnist-digit-recognition-using-pytorch/notebook
+        * https://medium.com/swlh/multi-digit-sequence-recognition-with-crnn-and-ctc-loss-using-pytorch-framework-269a7aca2a6
     * https://github.com/PAN001/MNIST-digit-sequence-recognition
-    * https://towardsdatascience.com/learning-note-single-shot-multibox-detector-with-pytorch-part-1-38185e84bd79
-    * https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection
-        * https://github.com/dldldlfma/pytorch_tutorial_ssd
-    * https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
+    * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
+    * https://velog.io/@sjinu/Pytorch-Implementation-code
+    * https://coding-yoon.tistory.com/131
+    * https://tutorials.pytorch.kr/intermediate/char_rnn_classification_tutorial
+
+* YOLO
     * https://foss4g.tistory.com/1646
-    * https://taeu.github.io/paper/deeplearning-paper-ssd
-    * https://herbwood.tistory.com/15
-    * https://www.kaggle.com/code/thongnon1996/object-detection-mnist-ssd-pytorch-from-scratch
-    * https://github.com/amdegroot/ssd.pytorch
-    * https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
-    * https://pytorch.org/vision/stable/generated/torchvision.datasets.VOCDetection.html
-    * https://deep-learning-study.tistory.com/612
     * https://velog.io/@minkyu4506/PyTorch%EB%A1%9C-YOLOv1-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
     * https://velog.io/@skhim520/YOLO-v1-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0-%EB%B0%8F-%EC%BD%94%EB%93%9C-%EA%B5%AC%ED%98%84
     * https://wandb.ai/wandb_fc/korean/reports/Windows-YOLOv5---VmlldzoxODc3MjE1
     * https://wandb.ai/wandb_fc/korean/reports/PyTorch-YOLOv5---VmlldzoxODc3Mzk5
-    * https://eehoeskrap.tistory.com/651
     * https://leedakyeong.tistory.com/entry/Object-Detection-YOLO-v1v6-%EB%B9%84%EA%B5%902
     * https://arxiv.org/abs/2207.02696
-
     * https://github.com/PaddlePaddle/PaddleDetection
-    * https://cocodataset.org
-    * https://github.com/cocodataset/cocoapi
-    * https://velog.io/@dkdk6638/Pytorch-COCO-Dataset
 
+* SSD - Single Shot MultiBox Detector, VOC, R-CNN
+    * https://towardsdatascience.com/learning-note-single-shot-multibox-detector-with-pytorch-part-1-38185e84bd79
+    * https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection
+        * https://github.com/dldldlfma/pytorch_tutorial_ssd
+    * https://taeu.github.io/paper/deeplearning-paper-ssd
+    * https://herbwood.tistory.com/15
+    * https://github.com/amdegroot/ssd.pytorch
+    * https://www.kaggle.com/code/thongnon1996/object-detection-mnist-ssd-pytorch-from-scratch
+    * https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
+    * https://deep-learning-study.tistory.com/612
 
-* What is padding?
-    * https://wegonnamakeit.tistory.com/48
-* https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html
-    * https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
-* https://github.com/facebookresearch/faiss
+* Transformer
+    * https://github.com/huggingface/transformers
+    * https://github.com/moyix/fauxpilot
+
 * ViT
+    * https://github.com/jeonsworld/ViT-pytorch
     * https://blog.kubwa.co.kr/%EB%85%BC%EB%AC%B8%EB%A6%AC%EB%B7%B0-a-convnet-for-the-2020s-9b45ac666d04
 
+* Dataset
+    * MNIST - http://yann.lecun.com/exdb/mnist
+    * EMNIST - https://www.nist.gov/itl/products-and-services/emnist-dataset
+    * TextOCR - https://textvqa.org/textocr/dataset
+    * CIFAR - https://www.cs.toronto.edu/~kriz/cifar.html
+        * Mirror - http://data.brainchip.com/dataset-mirror
+    * Imagenet - Kaggle
+    * Tiny-Imagenet200 - http://cs231n.stanford.edu/tiny-imagenet-200.zip
+    * COCO - https://cocodataset.org/
+        * https://github.com/cocodataset/cocoapi
+
 * Etc.
+    * https://tutorials.pytorch.kr/beginner/transfer_learning_tutorial.html
+        * https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html
+    * https://www.kaggle.com/code/famadio/ocr-with-pytorch/notebook
+    * https://github.com/facebookresearch/faiss
     * https://codetorial.net/tensorflow/index.html
     * https://github.com/albumentations-team/albumentations
     * https://deview.kr/data/deview/2019/presentation/[115]%EC%96%B4%EB%94%94%EA%B9%8C%EC%A7%80+%EA%B9%8E%EC%95%84%EB%B4%A4%EB%8B%88_%EB%AA%A8%EB%B0%94%EC%9D%BC+%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC+%EC%9C%84%ED%95%9C+%EA%B0%80%EB%B2%BC%EC%9A%B4+%EC%9D%B4%EB%AF%B8%EC%A7%80+%EC%9D%B8%EC%8B%9D_%EA%B2%80%EC%B6%9C+%EB%94%A5%EB%9F%AC%EB%8B%9D+%EB%AA%A8%EB%8D%B8.pdf
     * https://arxiv.org/pdf/1810.00736.pdf
-    * https://www.kaggle.com/code/famadio/ocr-with-pytorch/notebook
-    * https://textvqa.org/textocr/dataset

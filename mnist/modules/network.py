@@ -77,6 +77,7 @@ class CNN2(nn.Module):
         super(CNN2, self).__init__()
 
         self.keep_prob = 0.5
+
         # L1 ImgIn shape=(?, 28, 28, 1)
         #    Conv     -> (?, 28, 28, 32)
         #    Pool     -> (?, 14, 14, 32)
@@ -85,6 +86,7 @@ class CNN2(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
         )
+
         # L2 ImgIn shape=(?, 14, 14, 32)
         #    Conv      ->(?, 14, 14, 64)
         #    Pool      ->(?, 7, 7, 64)
@@ -93,6 +95,7 @@ class CNN2(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
         )
+
         # L3 ImgIn shape=(?, 7, 7, 64)
         #    Conv      ->(?, 7, 7, 128)
         #    Pool      ->(?, 4, 4, 128)
@@ -106,6 +109,7 @@ class CNN2(nn.Module):
         self.fc1 = nn.Linear(4 * 4 * 128, 625, bias=True)
         nn.init.xavier_uniform_(self.fc1.weight)
         self.layer4 = nn.Sequential(self.fc1, nn.ReLU(), nn.Dropout(p=1 - self.keep_prob))
+
         # L5 Final FC 625 inputs -> 10 outputs
         self.fc2 = nn.Linear(625, 10, bias=True)
         nn.init.xavier_uniform_(self.fc2.weight)
