@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 from torchvision import datasets, models, transforms
+from torchvision.io import ImageReadMode
 from torchvision.transforms import ToTensor
 
 import modules.dataset as dset
@@ -43,18 +44,18 @@ else:
 # model.classifier[6] = nn.Linear(4096, 10)
 
 # resnet
-# model = models.resnet18()
-# model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-# model.fc = nn.Linear(512, 10)
+model = models.resnet18()
+model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+model.fc = nn.Linear(512, 10)
 
-# rnn, lstm
-input_size = 28
-hidden_size = 128
-layer_count = 4
-output_class_count = 10
+# # rnn, lstm
+# input_size = 28
+# hidden_size = 128
+# layer_count = 4
+# output_class_count = 10
 
-# model = net.RNN(device, input_size, hidden_size, layer_count, output_class_count)
-model = net.LSTM(device, input_size, hidden_size, layer_count, output_class_count)
+# # model = net.RNN(device, input_size, hidden_size, layer_count, output_class_count)
+# model = net.LSTM(device, input_size, hidden_size, layer_count, output_class_count)
 
 model.to(device)
 model.load_state_dict(torch.load(model_fname))
@@ -66,13 +67,22 @@ r = random.randint(0, len(test_data) - 1)
 # image, label = test_data[r][0].view(-1, 28 * 28), test_data[r][1]  # linear
 image, label = test_data[r][0], test_data[r][1]
 
+
+# 임의 숫자
+from torchvision.io import read_image
+fname, label = "5.jpg", 5
+# fname, label = "6.jpg", 6
+image = read_image(fname, ImageReadMode.GRAY)
+image = transforms.Resize((28, 28))(image)
+
+
 with torch.no_grad():
     if use_torchvision_dataset:
         pred = model(image.unsqueeze(dim=0)).to(device)
     else:
         # pred = model(image.float().to(device)) # linear
-        # pred = model(image.float().unsqueeze(dim=0).to(device)) # cnn
-        pred = model(image.float().to(device)) # rnn, lstm
+        pred = model(image.float().unsqueeze(dim=0).to(device)) # cnn
+        # pred = model(image.float().to(device)) # rnn, lstm
 
 predicted, actual = classes[pred[0].argmax(0).cpu().numpy()], classes[label]
 probability = (255 - pred[0].cpu().numpy()[predicted]) / 255
