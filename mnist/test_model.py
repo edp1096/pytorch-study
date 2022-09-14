@@ -43,9 +43,18 @@ else:
 # model.classifier[6] = nn.Linear(4096, 10)
 
 # resnet
-model = models.resnet18()
-model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-model.fc = nn.Linear(512, 10)
+# model = models.resnet18()
+# model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+# model.fc = nn.Linear(512, 10)
+
+# rnn, lstm
+input_size = 28
+hidden_size = 128
+layer_count = 4
+output_class_count = 10
+
+# model = net.RNN(device, input_size, hidden_size, layer_count, output_class_count)
+model = net.LSTM(device, input_size, hidden_size, layer_count, output_class_count)
 
 model.to(device)
 model.load_state_dict(torch.load(model_fname))
@@ -62,13 +71,16 @@ with torch.no_grad():
         pred = model(image.unsqueeze(dim=0)).to(device)
     else:
         # pred = model(image.float().to(device)) # linear
-        pred = model(image.float().unsqueeze(dim=0).to(device))
+        # pred = model(image.float().unsqueeze(dim=0).to(device)) # cnn
+        pred = model(image.float().to(device)) # rnn, lstm
 
 predicted, actual = classes[pred[0].argmax(0).cpu().numpy()], classes[label]
 probability = (255 - pred[0].cpu().numpy()[predicted]) / 255
 
 print(pred, classes, pred[0].argmax(0).cpu().numpy())
-print(f"Index: {r}, Probability(%): {probability * 100:.2f}%, Tensor: {pred[0].cpu().numpy()[predicted]:.2f}, Predicted: {predicted}, Actual: {actual}")
+print(
+    f"Index: {r}, Probability(%): {probability * 100:.2f}%, Tensor: {pred[0].cpu().numpy()[predicted]:.2f}, Predicted: {predicted}, Actual: {actual}"
+)
 
 plt.imshow(image.view(28, 28).cpu().numpy(), cmap="Greys", interpolation="nearest")
 plt.show()

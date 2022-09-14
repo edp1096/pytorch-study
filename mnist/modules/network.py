@@ -1,3 +1,4 @@
+import torch
 from torch import nn
 import torch.nn.functional as FN
 
@@ -145,3 +146,73 @@ class CNN3(nn.Module):
         x = self.fc2(x)
 
         return FN.log_softmax(x, dim=1)
+
+
+class RNN(nn.Module):
+    def __init__(self, device, input_dim, hidden_dim, layer_dim, output_dim):
+        super(RNN, self).__init__()
+
+        self.device = device
+
+        # Hidden dimensions
+        self.hidden_dim = hidden_dim
+
+        # Number of hidden layers
+        self.layer_dim = layer_dim
+
+        # RNN 구축
+        # batch_first=True 설정으로 input/output tensors to be of shape
+        # (batch_dim, seq_dim, input_dim)
+        # batch_dim = number of samples per batch
+        self.rnn = nn.RNN(input_dim, hidden_dim, layer_dim, batch_first=True, nonlinearity="relu")
+
+        # Readout layer
+        self.fc = nn.Linear(hidden_dim, output_dim)
+
+    def forward(self, x):
+        device = self.device
+
+        # hidden state 를 zeros로 초기화
+        # (layer_dim, batch_size, hidden_dim)
+        # h0 = torch.zeros(self.layer_dim, x.size(0), self.hidden_dim).requires_grad_().to(device)
+        h0 = torch.zeros(self.layer_dim, x.size(0), self.hidden_dim).to(device)
+
+        # 폭발/소실 현상을 방지하기 위해 hidden state를 분리해야 합니다
+        # 이는 시간(BPTT)을 통해 잘린 역전파의 일부입니다
+        out, hn = self.rnn(x, h0.detach())
+
+        # 이전 time step의 hidden state 색인
+        # out.size() --> 100, 28, 10
+        # out[:, -1, :] --> 100, 10 --> 이전 time step의 hidden states만 필요!
+        out = self.fc(out[:, -1, :])
+        # out.size() --> 100, 10
+        return out
+
+
+class LSTM(nn.Module):
+    def __init__(self, device, input_size, hidden_size, num_layers, num_classes):
+        super(LSTM, self).__init__()
+
+        self.device = device
+
+        self.hidden_size = hidden_size
+        self.num_layers = num_layers
+        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, batch_first=True)
+        self.fc = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, x):
+        device = self.device
+
+        # 초기 hidden 및 cell state 설정
+        # h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).requires_grad_().to(device)
+        # c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).requires_grad_().to(device)
+        h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(device)
+        c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(device)
+
+        # 입력 및 hidden state를 모델에 전달하고 출력 획득
+        out, hidden = self.lstm(x, (h0.detach(), c0.detach()))  # out: tensor of shape (batch_size, seq_length, hidden_size)
+
+        # fully connected layer에 맞게 출력단 형상 변경
+        out = self.fc(out[:, -1, :])
+
+        return out
