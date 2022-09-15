@@ -176,3 +176,4 @@ Each training and test example is assigned to one of the following labels:
     * https://github.com/fchollet/deep-learning-models
     * https://www.aihub.or.kr/
     * https://keep-steady.tistory.com/36
+    * https://github.com/JaidedAI/EasyOCR
