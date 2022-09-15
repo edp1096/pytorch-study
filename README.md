@@ -99,9 +99,9 @@ Each training and test example is assigned to one of the following labels:
     * https://github.com/GitYCC/crnn-pytorch
     * https://github.com/PAN001/MNIST-digit-sequence-recognition
     * https://codingvision.net/pytorch-crnn-seq2seq-digits-recognition-ctc
-    * https://github.com/srihari-humbarwadi/crnn_ocr_keras
     * https://github.com/dredwardhyde/crnn-ctc-loss-pytorch
         * https://medium.com/swlh/multi-digit-sequence-recognition-with-crnn-and-ctc-loss-using-pytorch-framework-269a7aca2a6
+    * https://github.com/srihari-humbarwadi/crnn_ocr_keras
     * https://velog.io/@cha-suyeon/%EB%94%A5%EB%9F%AC%EB%8B%9D-OCR3-
     * https://www.deeplearningwizard.com/deep_learning/practical_pytorch/pytorch_recurrent_neuralnetwork/#step-1-loading-mnist-train-dataset
     * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
@@ -175,3 +175,4 @@ Each training and test example is assigned to one of the following labels:
     * https://cvml.tistory.com/22
     * https://github.com/fchollet/deep-learning-models
     * https://www.aihub.or.kr/
+    * https://keep-steady.tistory.com/36
