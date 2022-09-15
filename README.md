@@ -96,16 +96,24 @@ Each training and test example is assigned to one of the following labels:
 ## Todo
 
 * CRNN, CTC, RNN/LSTM/GRU
+    * https://github.com/GitYCC/crnn-pytorch
+    * https://github.com/PAN001/MNIST-digit-sequence-recognition
+    * https://codingvision.net/pytorch-crnn-seq2seq-digits-recognition-ctc
+    * https://github.com/srihari-humbarwadi/crnn_ocr_keras
     * https://github.com/dredwardhyde/crnn-ctc-loss-pytorch
         * https://medium.com/swlh/multi-digit-sequence-recognition-with-crnn-and-ctc-loss-using-pytorch-framework-269a7aca2a6
-    * https://github.com/PAN001/MNIST-digit-sequence-recognition
-    * https://github.com/srihari-humbarwadi/crnn_ocr_keras
     * https://velog.io/@cha-suyeon/%EB%94%A5%EB%9F%AC%EB%8B%9D-OCR3-
     * https://www.deeplearningwizard.com/deep_learning/practical_pytorch/pytorch_recurrent_neuralnetwork/#step-1-loading-mnist-train-dataset
     * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
     * https://velog.io/@sjinu/Pytorch-Implementation-code
     * https://coding-yoon.tistory.com/131
     * https://tutorials.pytorch.kr/intermediate/char_rnn_classification_tutorial
+
+* Sliding window
+    * https://github.com/rustagiadi95/OCR-sliding_window-pytorch
+
+* Detectron2
+    * https://github.com/facebookresearch/detectron2
 
 * YOLO
     * https://foss4g.tistory.com/1646
@@ -121,9 +129,9 @@ Each training and test example is assigned to one of the following labels:
     * https://towardsdatascience.com/learning-note-single-shot-multibox-detector-with-pytorch-part-1-38185e84bd79
     * https://github.com/sgrvinod/a-PyTorch-Tutorial-to-Object-Detection
         * https://github.com/dldldlfma/pytorch_tutorial_ssd
+    * https://github.com/amdegroot/ssd.pytorch
     * https://taeu.github.io/paper/deeplearning-paper-ssd
     * https://herbwood.tistory.com/15
-    * https://github.com/amdegroot/ssd.pytorch
     * https://www.kaggle.com/code/thongnon1996/object-detection-mnist-ssd-pytorch-from-scratch
     * https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
     * https://deep-learning-study.tistory.com/612
@@ -145,6 +153,7 @@ Each training and test example is assigned to one of the following labels:
     * MNIST - http://yann.lecun.com/exdb/mnist
     * EMNIST - https://www.nist.gov/itl/products-and-services/emnist-dataset
     * TextOCR - https://textvqa.org/textocr/dataset
+    * Text Recognition Data - https://www.robots.ox.ac.uk/~vgg/data/text/
     * CIFAR - https://www.cs.toronto.edu/~kriz/cifar.html
         * Mirror - http://data.brainchip.com/dataset-mirror
     * Imagenet - Kaggle
@@ -165,3 +174,4 @@ Each training and test example is assigned to one of the following labels:
     * https://velog.io/@0ju-un/PyTorch%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-FPN%EC%9C%BC%EB%A1%9C-%ED%95%9C%EA%B8%80-%EC%86%90%EA%B8%80%EC%94%A8%EC%97%90%EC%84%9C-%EC%9E%90%EB%AA%A8-%EB%B6%84%EB%A5%98%ED%95%98%EA%B8%B0-dataset-%EC%A0%9C%EC%9E%91%EB%B6%80%ED%84%B0-%EB%AA%A8%EB%8D%B8-%ED%95%99%EC%8A%B5-%EC%98%88%EC%B8%A1%EA%B9%8C%EC%A7%80
     * https://cvml.tistory.com/22
     * https://github.com/fchollet/deep-learning-models
+    * https://www.aihub.or.kr/
