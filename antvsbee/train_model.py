@@ -6,7 +6,6 @@ from torchinfo import summary
 from torchvision import datasets, models, transforms
 from torchvision.transforms import ToTensor
 
-import modules.dataset as dset
 import modules.fit as fit
 import modules.network as net
 import modules.valid as valid
@@ -15,12 +14,8 @@ import matplotlib.pyplot as plt
 import random
 
 
-
 cudnn.benchmark = True
-plt.ion()   # 대화형 모드
-
-use_torchvision_dataset = False
-model_fname = "model_mnist.pt"
+plt.ion()  # 대화형 모드
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Device:", device)
@@ -35,48 +30,47 @@ epochs = 5
 batch_size = 100
 learning_rate = 0.001
 
-train_transform = transforms.Compose([transforms.ToTensor()])
-valid_transform = train_transform
+workers = 4
 
-if use_torchvision_dataset:
-    train_set, valid_set = dset.prepareTorchvisionDataset(train_transform, valid_transform)  # Torchvision Dataset
-else:
-    train_set = dset.prepareCustomDataset(9, "datas/train", train_transform)  # Custom Dataset
-    valid_set = dset.prepareCustomDataset(9, "datas/test", valid_transform)
+transform = {
+    "train": transforms.Compose(
+        [
+            transforms.RandomResizedCrop(224),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+        ]
+    ),
+    "val": transforms.Compose(
+        [
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+        ]
+    ),
+}
 
-train_loader, valid_loader = dset.getDataLoaders(train_set, valid_set, batch_size, batch_size)
 
+dataset = {x: datasets.ImageFolder(f"datas/{x}", transform[x]) for x in ["train", "val"]}
+loaders = {
+    x: DataLoader(dataset[x], batch_size=batch_size, shuffle=True, num_workers=workers)
+    for x in ["train", "val"]
+}
 
-# model = nn.Linear(784, 10, bias=True)  # linear
-# model = net.CNN2()  # cnn
+dataset_sizes = {x: len(dataset[x]) for x in ["train", "val"]}
+class_names = dataset["train"].classes
 
-# vgg
-# model = models.vgg11()
-# model.features[0] = nn.Conv2d(1, 64, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), bias=False)
-# model.classifier[6] = nn.Linear(4096, 10)
 
 # resnet
-# model = models.resnet18()
-# model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-# model.fc = nn.Linear(512, 10)
-
-# mobilenet
-model = models.mobilenet_v2()
-model.features[0][0] = nn.Conv2d(1, 32, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-model.classifier[1] = nn.Linear(1280, 10)
-
-# # rnn, lstm
-# input_size = 28
-# hidden_size = 128
-# layer_count = 4
-# output_class_count = 10
-
-# # model = net.RNN(device, input_size, hidden_size, layer_count, output_class_count)
-# model = net.LSTM(device, input_size, hidden_size, layer_count, output_class_count)
+model = models.resnet18()
+model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+model.fc = nn.Linear(512, 10)
 
 model.to(device)
 print(model)
 
+exit()
 
 # summary(model, input_size=(batch_size, 1, 28 * 28))  # linear. 모델 정보 출력 (channels, height, width)
 summary(model, input_size=(batch_size, 1, 28, 28))  # cnn
