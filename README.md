@@ -103,6 +103,7 @@ Each training and test example is assigned to one of the following labels:
         * https://medium.com/swlh/multi-digit-sequence-recognition-with-crnn-and-ctc-loss-using-pytorch-framework-269a7aca2a6
     * https://github.com/srihari-humbarwadi/crnn_ocr_keras
     * https://velog.io/@cha-suyeon/%EB%94%A5%EB%9F%AC%EB%8B%9D-OCR3-
+    * https://youtu.be/-SHPG_KMUkQ
     * https://www.deeplearningwizard.com/deep_learning/practical_pytorch/pytorch_recurrent_neuralnetwork/#step-1-loading-mnist-train-dataset
     * https://medium.com/@nutanbhogendrasharma/pytorch-recurrent-neural-networks-with-mnist-dataset-2195033b540f
     * https://velog.io/@sjinu/Pytorch-Implementation-code
