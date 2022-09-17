@@ -29,8 +29,9 @@ if device == "cuda":
 
 cudnn.benchmark = True
 
-epochs = 5
-batch_size = 100
+epochs = 25
+# batch_size = 100
+batch_size = 32
 learning_rate = 0.001
 
 transform = {}
@@ -53,15 +54,12 @@ transform["valid"] = transforms.Compose(
 
 dataset = {x: datasets.ImageFolder(f"datas/{x}", transform[x]) for x in ["train", "valid"]}
 loaders = {x: DataLoader(dataset[x], batch_size=batch_size, shuffle=True) for x in ["train", "valid"]}
-# x: DataLoader(dataset[x], batch_size=batch_size, shuffle=True, num_workers=workers) for x in ["train", "valid"]
 
 dataset_sizes = {x: len(dataset[x]) for x in ["train", "valid"]}
 class_names = dataset["train"].classes
 
-# plt.ion()  # 대화형 모드
 
-
-def imshow(inp, title=None):
+def imshow():
     for i in range(4):
         inp = images[i].numpy().transpose((1, 2, 0))
         mean = np.array([0.485, 0.456, 0.406])
@@ -81,39 +79,49 @@ def imshow(inp, title=None):
 
 
 images, classes = next(iter(loaders["train"]))
-out = torchvision.utils.make_grid(images)
-
-imshow(out, title=[class_names[x] for x in classes])
+imshow()
 
 
 # resnet
-model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
-model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-model.fc = nn.Linear(512, 10)
+model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+
+for param in model.parameters():
+    param.requires_grad = False
+
+features_count = model.fc.in_features
+model.fc = nn.Linear(features_count, 2)
 
 model.to(device)
 print(model)
 
-
-# summary(model, input_size=(batch_size, 1, 28 * 28))  # linear. 모델 정보 출력 (channels, height, width)
-summary(model, input_size=(batch_size, 1, 28, 28))  # cnn
-# summary(model, input_size=(batch_size, 1, input_size))  # rnn, lstm
+summary(model, input_size=(batch_size, 3, 7, 7))
 
 total_batch = len(loaders["train"])
 print("총 배치의 수 : {}".format(total_batch))
 
 criterion = nn.CrossEntropyLoss().to(device)  # 비용 함수에 소프트맥스 함수 포함되어져 있음
-# optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
+# optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
+# Decay Learning-Rate by a factor of 0.1 every 7 epochs
+learning_rate_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
+
+# print(loaders["train"].dataset)
+
+# for batch, (image, label) in enumerate(loaders["train"]):
+#     print(batch, image.size(), label)
+#     if batch > 2:
+#         break
+
+# exit()
 
 # 훈련 시작
 for epoch in range(epochs):
     print(f"Epoch {epoch+1}\n-------------------------------")
 
     # cnn
-    fit.runCNN(device, loaders["train"], model, criterion, optimizer)
-    valid.runCNN(device, loaders["valid"], model, criterion)
+    fit.run(device, loaders["train"], model, criterion, optimizer, learning_rate_scheduler)
+    valid.run(device, loaders["valid"], model, criterion)
 
 print("Training done!")
 
