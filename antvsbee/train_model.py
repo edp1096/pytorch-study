@@ -8,7 +8,6 @@ import torchvision
 from torchvision import datasets, models, transforms
 
 import modules.fit as fit
-import modules.network as net
 import modules.valid as valid
 
 import matplotlib.pyplot as plt
