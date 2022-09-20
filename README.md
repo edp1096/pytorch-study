@@ -119,6 +119,7 @@ Each training and test example is assigned to one of the following labels:
 * YOLO
     * https://foss4g.tistory.com/1646
     * https://velog.io/@minkyu4506/PyTorch%EB%A1%9C-YOLOv1-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
+    * https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data
     * https://velog.io/@skhim520/YOLO-v1-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0-%EB%B0%8F-%EC%BD%94%EB%93%9C-%EA%B5%AC%ED%98%84
     * https://wandb.ai/wandb_fc/korean/reports/Windows-YOLOv5---VmlldzoxODc3MjE1
     * https://wandb.ai/wandb_fc/korean/reports/PyTorch-YOLOv5---VmlldzoxODc3Mzk5
@@ -178,3 +179,8 @@ Each training and test example is assigned to one of the following labels:
     * https://www.aihub.or.kr/
     * https://keep-steady.tistory.com/36
     * https://github.com/JaidedAI/EasyOCR
+    * TTF to PIL - https://gist.github.com/bornfree/d657a2b0975870f98680073caa582ace
+    * TTF to PNG
+        * https://github.com/sl2/TTF-to-PNG
+        * https://gist.github.com/Tamflex/ab64cffbfd9efaedfa367262ba16a2dd
+    * Image to CSV - https://stackoverflow.com/a/49070833/8964990
