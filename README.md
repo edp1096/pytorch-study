@@ -184,3 +184,4 @@ Each training and test example is assigned to one of the following labels:
         * https://github.com/sl2/TTF-to-PNG
         * https://gist.github.com/Tamflex/ab64cffbfd9efaedfa367262ba16a2dd
     * Image to CSV - https://stackoverflow.com/a/49070833/8964990
+    * Text detector - https://github.com/fcakyon/craft-text-detector
