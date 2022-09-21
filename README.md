@@ -96,6 +96,7 @@ Each training and test example is assigned to one of the following labels:
 ## Todo
 
 * CRNN, CTC, RNN/LSTM/GRU
+    * https://github.com/meijieru/crnn.pytorch
     * https://github.com/GitYCC/crnn-pytorch
     * https://github.com/PAN001/MNIST-digit-sequence-recognition
     * https://codingvision.net/pytorch-crnn-seq2seq-digits-recognition-ctc
@@ -184,4 +185,23 @@ Each training and test example is assigned to one of the following labels:
         * https://github.com/sl2/TTF-to-PNG
         * https://gist.github.com/Tamflex/ab64cffbfd9efaedfa367262ba16a2dd
     * Image to CSV - https://stackoverflow.com/a/49070833/8964990
-    * Text detector - https://github.com/fcakyon/craft-text-detector
+    * Text detector
+        * https://github.com/clovaai/CRAFT-pytorch
+        * https://github.com/fcakyon/craft-text-detector
+        * https://github.com/wptoux/attention-ocr
+        * https://velog.io/@cha-suyeon/%EB%94%A5%EB%9F%AC%EB%8B%9D-OCR4-Text-recognition-Attention
+        * https://github.com/chenjun2hao/Attention_ocr.pytorch
+        * https://github.com/fengxinjie/Transformer-OCR
+            * http://nlp.seas.harvard.edu/annotated-transformer
+        * https://pytorch.org/tutorials/intermediate/spatial_transformer_tutorial.html
+        * https://medium.com/@msmapark2/character-region-awareness-for-text-detection-craft-paper-%EB%B6%84%EC%84%9D-da987b32609c
+        * https://velog.io/@jiyeon2781/Detectron2-Framework%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-Scene-Text-Detection
+        * https://medium.com/saarthi-ai/how-to-build-your-own-ocr-a5bb91b622ba
+        * https://github.com/clovaai/deep-text-recognition-benchmark
+        * https://cvml.tistory.com/22
+        * https://deepayan137.github.io/blog/markdown/2020/08/29/building-ocr.html
+        * https://yongwookha.github.io/MachineLearning/2022-02-08-current-ocrs
+        * https://velog.io/@recoder/Scene-Text-Overview
+    * Text data generator
+        * https://github.com/Belval/TextRecognitionDataGenerator
+            * https://medium.com/@sunwoopark/%EB%94%A5%EB%9F%AC%EB%8B%9D%EC%9D%84-%ED%99%9C%EC%9A%A9%ED%95%9C-%ED%95%9C%EA%B8%80%EB%AC%B8%EC%9E%A5-ocr-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-hclt-2019-bb9d17622412
