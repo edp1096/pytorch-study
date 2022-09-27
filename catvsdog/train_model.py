@@ -18,6 +18,7 @@ import random
 
 
 model_fname = "model_resnet.pt"
+optimizer_fname = "optimizer_resnet.pt"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Device:", device)
@@ -128,3 +129,5 @@ print("Training done")
 
 torch.save(model.state_dict(), model_fname)
 print(f"Saved PyTorch Model State to {model_fname}")
+torch.save(optimizer.state_dict(), optimizer_fname)
+print(f"Saved PyTorch Optimizer State to {optimizer_fname}")

@@ -14,7 +14,8 @@ from PIL import Image
 use_torchvision_dataset = False
 model_fname = "model_resnet.pt"
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 print("Device:", device)
 
 batch_size = 64
