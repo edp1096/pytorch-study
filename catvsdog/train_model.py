@@ -1,121 +1,121 @@
 import torch
-from torch import nn
+import torch.backends.cudnn as cudnn
+import torch.nn as nn
+import torch.utils
+from torch.utils.data import DataLoader
+
 import torchvision
-from torchvision import models, datasets
-from torchvision.transforms import ToTensor
-import torchvision.transforms as transforms
-from torchvision.io import read_image
-from torch.utils.data import DataLoader, ConcatDataset
-from torchinfo import summary
+from torchvision import datasets, models, transforms
 
-import nn_model.network as network
-import nn_model.train as train
-import nn_model.test as test
-import pet
-import fit
+import modules.fit as fit
+import modules.util as util
+import modules.valid as valid
 
-import pandas as pd
+import copy
 import matplotlib.pyplot as plt
+import numpy as np
+import random
 
 
-img_train_dir = "datas/train"
-img_valid_dir = "datas/valid"
-img_test_dir = "datas/test"
+model_fname = "model_resnet.pt"
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
-print(f"Device: {device}")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Device:", device)
+
+random.seed(777)
+torch.manual_seed(777)
+if device == "cuda":
+    torch.cuda.manual_seed_all(777)
 
 
-# batch_size = 32
+cudnn.benchmark = True
+
+epochs = 24
 batch_size = 64
+learning_rate = 0.001
+sgd_momentum = 0.9
 
-dog_train_files = [f"dog.{i}.jpg" for i in range(10000)]
-cat_train_files = [f"cat.{i}.jpg" for i in range(10000)]
-dog_valid_files = [f"dog.{i+11250}.jpg" for i in range(1249)]
-cat_valid_files = [f"cat.{i+11250}.jpg" for i in range(1249)]
-test_files = [f"{i+1}.jpg" for i in range(2500)]
-
-train_transform = transforms.Compose(
+transform = {}
+transform["train"] = transforms.Compose(
     [
-        transforms.ToPILImage(),
-        transforms.Resize((256, 256)),
-        torchvision.transforms.RandomCrop(224),
+        transforms.RandomResizedCrop(224),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
     ]
 )
-
-test_transform = transforms.Compose(
+transform["valid"] = transforms.Compose(
     [
-        transforms.ToPILImage(),
-        transforms.Resize((224, 224)),
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
         transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
     ]
 )
 
+dataset = {x: datasets.ImageFolder(f"datas/{x}", transform[x]) for x in ["train", "valid"]}
+loaders = {x: DataLoader(dataset[x], batch_size=batch_size, shuffle=True) for x in ["train", "valid"]}
 
-train_dog_dataset = pet.Dataset(img_train_dir, dog_train_files, "train", train_transform)
-train_cat_dataset = pet.Dataset(img_train_dir, cat_train_files, "train", train_transform)
-valid_dog_dataset = pet.Dataset(img_valid_dir, dog_valid_files, "train", train_transform)
-valid_cat_dataset = pet.Dataset(img_valid_dir, cat_valid_files, "train", train_transform)
-
-train_dataset = ConcatDataset([train_dog_dataset, train_cat_dataset])
-valid_dataset = ConcatDataset([valid_dog_dataset, valid_cat_dataset])
-test_dataset = pet.Dataset(img_test_dir, test_files, "", test_transform)
+dataset_sizes = {x: len(dataset[x]) for x in ["train", "valid"]}
+class_names = dataset["train"].classes
 
 
-print(f"number of train dataset : {len(train_dataset)}")
-print(f"number of valid dataset : {len(valid_dataset)}")
-print(f"number of test dataset : {len(test_dataset)}")
+def imshow(images, classes, class_names):
+    for i in range(4):
+        inp = images[i].numpy().transpose((1, 2, 0))
+        mean = np.array([0.485, 0.456, 0.406])
+        std = np.array([0.229, 0.224, 0.225])
+
+        inp = std * inp + mean
+        inp = np.clip(inp, 0, 1)
+
+        sp = plt.subplot(1, 4, i + 1)
+        sp.axis("Off")
+
+        plt.title(class_names[classes[i]])
+
+        sp.imshow(inp)
+
+    plt.show()
 
 
-train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-valid_dataloader = DataLoader(valid_dataset, batch_size=batch_size, shuffle=True)
-test_dataloader = DataLoader(test_dataset, batch_size=4, shuffle=True)
+# images, classes = next(iter(loaders["train"]))
+# imshow(images, classes, class_names)
 
+# resnet
+model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
 
-# samples, labels = iter(train_dataloader).next()
-# classes = {0: "cat", 1: "dog"}
+for param in model.parameters():
+    param.requires_grad = False
 
-# fig = plt.figure()
-# for i in range(24):
-#     sp = fig.add_subplot(4, 6, i + 1)
-#     sp.set_title(classes[labels[i].item()])
-#     sp.axis("off")
-#     sp.imshow(samples[i].numpy().transpose((1, 2, 0)))
-
-# plt.subplots_adjust(bottom=0.05, top=0.9, hspace=0)
-# plt.show()
-
-# weights = models.ResNet50_Weights.IMAGENET1K_V1
-# weights = models.ResNet50_Weights.auto()
-# model = torchvision.models.resnet50(weights=weights, progress=True)
-# weights = models.ResNet50_Weights.DEFAULT
-model = torchvision.models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V2, progress=True)
-
-num_ftrs = model.fc.in_features
-print(num_ftrs)
-model.fc = nn.Sequential(
-    nn.Dropout(0.5),
-    nn.Linear(num_ftrs, 1024),
-    nn.Dropout(0.2),
-    nn.Linear(1024, 512),
-    nn.Dropout(0.1),
-    nn.Linear(512, 1),
-    nn.Sigmoid(),
-)
+features_count = model.fc.in_features
+model.fc = nn.Linear(features_count, 2)
 
 model.to(device)
-# print(model)
+util.printModelInfo(model, batch_size, loaders["train"])
 
-# model.cuda()
-# summary(model, input_size=(3,224,224))
+criterion = nn.CrossEntropyLoss().to(device)
+optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=sgd_momentum)
+# optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-criterion = nn.BCELoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
-# optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+# Decay Learning-Rate by a factor of 0.1 every 7 epochs
+learning_rate_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
 
-trained_model = fit.run(device, model, criterion, optimizer, 10, train_dataloader, valid_dataloader)
+# 훈련 시작
+best_model_wts = copy.deepcopy(model.state_dict())
+best_acc = 0.0
 
-# torch.save(trained_model.state_dict(), "model.pth")
-torch.save(trained_model, "model.pth")
+for epoch in range(epochs):
+    print(f"Epoch {epoch+1}\n-------------------------------")
+
+    # cnn
+    fit.run(device, loaders["train"], model, criterion, optimizer, learning_rate_scheduler)
+    model, best_model_wts, best_acc = valid.run(device, loaders["valid"], model, criterion, optimizer, best_model_wts, best_acc)
+
+    # 가장 나은 모델 가중치를 불러옴
+    model.load_state_dict(best_model_wts)
+
+print("Training done")
+
+torch.save(model.state_dict(), model_fname)
+print(f"Saved PyTorch Model State to {model_fname}")
