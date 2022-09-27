@@ -26,10 +26,16 @@ img_dir = "datas/test"
 fnames = next(walk(img_dir), (None, None, []))[2]
 fidxs = np.random.randint(0, len(fnames), 20)
 
+# resnet
+# model = models.resnet18()
+# features_count = model.fc.in_features
+# model.fc = nn.Linear(features_count, 2)
 
-model = models.resnet18()
-features_count = model.fc.in_features
-model.fc = nn.Linear(features_count, 2)
+# mobilenet
+model = models.mobilenet_v2()
+features_count = model.classifier[1].in_features
+model.classifier[1] = nn.Linear(features_count, 2)
+
 
 weights = torch.load(model_fname)
 model.load_state_dict(weights)
@@ -47,14 +53,12 @@ for fidx in fidxs:
 
     imgTS = ToTensor()(image)
     imgTS = Resize((224, 224))(imgTS)
-    image = imgTS
-
     imgTS = Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(imgTS)
 
     pred = model(imgTS.unsqueeze(0))
     predicted = classes[pred[0].argmax(0)]
 
-    images += [image]
+    images += [imgTS]
     labels += [predicted]
 
     print(f'Predicted: "{predicted}" / "{fname}"')

@@ -32,7 +32,7 @@ cudnn.benchmark = True
 
 epochs = 24
 batch_size = 64
-learning_rate = 0.001
+learning_rate = 0.002
 sgd_momentum = 0.9
 
 transform = {}
@@ -83,13 +83,23 @@ def imshow(images, classes, class_names):
 # imshow(images, classes, class_names)
 
 # resnet
-model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+# model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+
+# mobilenet
+model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1)
+
 
 for param in model.parameters():
     param.requires_grad = False
 
-features_count = model.fc.in_features
-model.fc = nn.Linear(features_count, 2)
+
+# resnet
+# features_count = model.fc.in_features
+# model.fc = nn.Linear(features_count, 2)
+
+# mobilenet
+features_count = model.classifier[1].in_features
+model.classifier[1] = nn.Linear(features_count, 2)
 
 model.to(device)
 util.printModelInfo(model, batch_size, loaders["train"])

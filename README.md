@@ -90,7 +90,8 @@ Each training and test example is assigned to one of the following labels:
         * https://blog.jovian.ai/image-classification-between-dog-and-cat-using-resnet-in-pytorch-fdd9fdfac20a
         * https://www.microsoft.com/en-us/download/details.aspx?id=54765
         * https://nuguziii.github.io/dev/dev-002
-        * https://inside-machinelearning.com/en/easy-tutorial-object-detection-on-image-in-pytorch-part-2/
+        * https://inside-machinelearning.com/en/easy-tutorial-object-detection-on-image-in-pytorch-part-2
+        * https://sungin.tistory.com/173
 
 
 ## Todo
