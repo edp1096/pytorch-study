@@ -11,13 +11,22 @@ import modules.util as util
 use_torchvision_dataset = False
 model_fname = "model_resnet.pt"
 
+transform = transforms.Compose(
+    [
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
+    ]
+)
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Device:", device)
 
 batch_size = 64
 
 
-dataset_test = datasets.ImageFolder("datas/test", transform=ToTensor())
+dataset_test = datasets.ImageFolder("datas/test", transform=transform)
 loader_test = DataLoader(dataset_test, batch_size=batch_size, shuffle=True)
 
 

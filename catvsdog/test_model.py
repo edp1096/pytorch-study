@@ -3,10 +3,13 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
 from torchvision.io import ImageReadMode
-from torchvision.transforms import ToTensor
+from torchvision.transforms import ToTensor, Normalize, Resize
 
 import modules.util as util
 
+import numpy as np
+from os import walk
+from PIL import Image
 
 use_torchvision_dataset = False
 model_fname = "model_resnet.pt"
@@ -17,8 +20,11 @@ print("Device:", device)
 batch_size = 64
 
 
-dataset_test = datasets.ImageFolder("datas/test", transform=ToTensor())
-loader_test = DataLoader(dataset_test, batch_size=batch_size, shuffle=True)
+# dataset_test = datasets.ImageFolder("datas/test", transform=ToTensor())
+img_dir = "datas/test"
+
+fnames = next(walk(img_dir), (None, None, []))[2]
+fidxs = np.random.randint(0, len(fnames), 20)
 
 
 model = models.resnet18()
@@ -34,13 +40,23 @@ images, labels = [], []
 
 model.eval()
 
-for image, label in loader_test.dataset:
-    pred = model(image.unsqueeze(0))
-    predicted, actual = classes[pred[0].argmax(0)], classes[label]
+
+for fidx in fidxs:
+    fname = img_dir+"/"+fnames[fidx]
+    image = Image.open(fname)
+
+    imgTS = ToTensor()(image)
+    imgTS = Resize((224, 224))(imgTS)
+    image = imgTS
+
+    imgTS = Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])(imgTS)
+
+    pred = model(imgTS.unsqueeze(0))
+    predicted = classes[pred[0].argmax(0)]
 
     images += [image]
-    labels += [actual + "/" + predicted]
+    labels += [predicted]
 
-    print(f'Predicted: "{predicted}", Actual: "{actual}"')
+    print(f'Predicted: "{predicted}" / "{fname}"')
 
 util.imshow(images, labels)
