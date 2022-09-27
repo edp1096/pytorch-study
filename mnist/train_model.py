@@ -78,7 +78,7 @@ summary(model, input_size=(batch_size, 1, 28, 28))  # cnn
 # summary(model, input_size=(batch_size, 1, input_size))  # rnn, lstm
 
 total_batch = len(train_loader)
-print("총 배치의 수 : {}".format(total_batch))
+print("Batch count : {}".format(total_batch))
 
 criterion = nn.CrossEntropyLoss().to(device)  # 비용 함수에 소프트맥스 함수 포함되어져 있음
 # optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)

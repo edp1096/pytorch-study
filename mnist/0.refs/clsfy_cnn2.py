@@ -79,7 +79,7 @@ criterion = torch.nn.CrossEntropyLoss().to(device)    # 비용 함수에 소프�
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 total_batch = len(data_loader)
-print('총 배치의 수 : {}'.format(total_batch))
+print('Batch count : {}'.format(total_batch))
 
 for epoch in range(training_epochs):
     avg_cost = 0
