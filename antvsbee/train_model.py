@@ -3,13 +3,15 @@ import torch.backends.cudnn as cudnn
 import torch.nn as nn
 import torch.utils
 from torch.utils.data import DataLoader
-from torchinfo import summary
+
 import torchvision
 from torchvision import datasets, models, transforms
 
 import modules.fit as fit
+import modules.util as util
 import modules.valid as valid
 
+import copy
 import matplotlib.pyplot as plt
 import numpy as np
 import random
@@ -28,10 +30,10 @@ if device == "cuda":
 
 cudnn.benchmark = True
 
-epochs = 25
-# batch_size = 100
-batch_size = 32
+epochs = 24
+batch_size = 64
 learning_rate = 0.001
+sgd_momentum = 0.9
 
 transform = {}
 transform["train"] = transforms.Compose(
@@ -58,7 +60,7 @@ dataset_sizes = {x: len(dataset[x]) for x in ["train", "valid"]}
 class_names = dataset["train"].classes
 
 
-def imshow():
+def imshow(images, classes):
     for i in range(4):
         inp = images[i].numpy().transpose((1, 2, 0))
         mean = np.array([0.485, 0.456, 0.406])
@@ -77,12 +79,11 @@ def imshow():
     plt.show()
 
 
-images, classes = next(iter(loaders["train"]))
-imshow()
-
+# images, classes = next(iter(loaders["train"]))
+# imshow(images, classes)
 
 # resnet
-model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
 
 for param in model.parameters():
     param.requires_grad = False
@@ -91,38 +92,30 @@ features_count = model.fc.in_features
 model.fc = nn.Linear(features_count, 2)
 
 model.to(device)
-print(model)
+util.printModelInfo(model, batch_size, loaders["train"])
 
-summary(model, input_size=(batch_size, 3, 7, 7))
-
-total_batch = len(loaders["train"])
-print("총 배치의 수 : {}".format(total_batch))
-
-criterion = nn.CrossEntropyLoss().to(device)  # 비용 함수에 소프트맥스 함수 포함되어져 있음
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
+criterion = nn.CrossEntropyLoss().to(device)
+optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=sgd_momentum)
 # optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # Decay Learning-Rate by a factor of 0.1 every 7 epochs
 learning_rate_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
 
-# print(loaders["train"].dataset)
-
-# for batch, (image, label) in enumerate(loaders["train"]):
-#     print(batch, image.size(), label)
-#     if batch > 2:
-#         break
-
-# exit()
-
 # 훈련 시작
+best_model_wts = copy.deepcopy(model.state_dict())
+best_acc = 0.0
+
 for epoch in range(epochs):
     print(f"Epoch {epoch+1}\n-------------------------------")
 
     # cnn
     fit.run(device, loaders["train"], model, criterion, optimizer, learning_rate_scheduler)
-    valid.run(device, loaders["valid"], model, criterion)
+    model, best_model_wts, best_acc = valid.run(device, loaders["valid"], model, criterion, optimizer, best_model_wts, best_acc)
 
-print("Training done!")
+    # 가장 나은 모델 가중치를 불러옴
+    model.load_state_dict(best_model_wts)
+
+print("Training done")
 
 torch.save(model.state_dict(), model_fname)
 print(f"Saved PyTorch Model State to {model_fname}")
