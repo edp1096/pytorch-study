@@ -29,7 +29,7 @@ weights = torch.load(model_fname)
 model.load_state_dict(weights)
 
 
-classes = ["ant", "bee"]
+classes = ["cat", "dog"]
 images, labels = [], []
 
 model.eval()
