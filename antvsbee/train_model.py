@@ -60,7 +60,7 @@ dataset_sizes = {x: len(dataset[x]) for x in ["train", "valid"]}
 class_names = dataset["train"].classes
 
 
-def imshow(images, classes):
+def imshow(images, classes, class_names):
     for i in range(4):
         inp = images[i].numpy().transpose((1, 2, 0))
         mean = np.array([0.485, 0.456, 0.406])
@@ -80,7 +80,7 @@ def imshow(images, classes):
 
 
 # images, classes = next(iter(loaders["train"]))
-# imshow(images, classes)
+# imshow(images, classes, class_names)
 
 # resnet
 model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
