@@ -148,6 +148,11 @@ Each training and test example is assigned to one of the following labels:
         * https://tutorials.pytorch.kr/intermediate/dynamic_quantization_bert_tutorial.html
         * https://velog.io/@lgd1820/pytorch%EB%A1%9C-BERT-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B013
         * https://inhyeokyoo.github.io/project/nlp/bert-issue
+    * https://cpm0722.github.io/pytorch-implementation/transformer
+        * https://github.com/cpm0722/transformer_pytorch
+    * https://wikidocs.net/156986
+    * https://velog.io/@logger_j_k/PyTorch-Transformer-%EA%B5%AC%ED%98%84
+    * https://github.com/eagle705/pytorch-transformer-chatbot
 
 * ViT
     * https://github.com/jeonsworld/ViT-pytorch
