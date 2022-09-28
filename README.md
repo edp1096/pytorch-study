@@ -94,13 +94,29 @@ Each training and test example is assigned to one of the following labels:
         * https://sungin.tistory.com/173
 
 
-## TorchText
-
-* https://tutorials.pytorch.kr/beginner/text_sentiment_ngrams_tutorial.html
-* https://wikidocs.net/60314
-
-
 ## Todo
+
+* TorchText
+    * https://tutorials.pytorch.kr/beginner/text_sentiment_ngrams_tutorial.html
+    * https://wikidocs.net/60314
+
+* Transformer
+    * https://github.com/huggingface/transformers
+    * https://github.com/moyix/fauxpilot
+    * https://github.com/microsoft/CodeBERT
+        * https://ebbnflow.tistory.com/151
+        * https://tutorials.pytorch.kr/intermediate/dynamic_quantization_bert_tutorial.html
+        * https://velog.io/@lgd1820/pytorch%EB%A1%9C-BERT-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B013
+        * https://inhyeokyoo.github.io/project/nlp/bert-issue
+    * https://cpm0722.github.io/pytorch-implementation/transformer
+        * https://github.com/cpm0722/transformer_pytorch
+    * https://wikidocs.net/156986
+    * https://velog.io/@logger_j_k/PyTorch-Transformer-%EA%B5%AC%ED%98%84
+    * https://github.com/eagle705/pytorch-transformer-chatbot
+    * https://towardsdatascience.com/how-to-code-the-transformer-in-pytorch-24db27c8f9ec
+    * https://paul-hyun.github.io/gpt-01/?fbclid=IwAR3r0IrkT84IISMhKr9z_8yWqH1ygAI47T201rEtx3MR8mR9Oorf6GJqgQs
+    * https://www.youtube.com/watch?v=bgsYOGhpxDc
+    * https://blog.naver.com/myincizor/222054097305
 
 * CRNN, CTC, RNN/LSTM/GRU
     * https://github.com/meijieru/crnn.pytorch
@@ -145,21 +161,6 @@ Each training and test example is assigned to one of the following labels:
     * https://www.kaggle.com/code/thongnon1996/object-detection-mnist-ssd-pytorch-from-scratch
     * https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html
     * https://deep-learning-study.tistory.com/612
-
-* Transformer
-    * https://github.com/huggingface/transformers
-    * https://github.com/moyix/fauxpilot
-    * https://github.com/microsoft/CodeBERT
-        * https://ebbnflow.tistory.com/151
-        * https://tutorials.pytorch.kr/intermediate/dynamic_quantization_bert_tutorial.html
-        * https://velog.io/@lgd1820/pytorch%EB%A1%9C-BERT-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B013
-        * https://inhyeokyoo.github.io/project/nlp/bert-issue
-    * https://cpm0722.github.io/pytorch-implementation/transformer
-        * https://github.com/cpm0722/transformer_pytorch
-    * https://wikidocs.net/156986
-    * https://velog.io/@logger_j_k/PyTorch-Transformer-%EA%B5%AC%ED%98%84
-    * https://github.com/eagle705/pytorch-transformer-chatbot
-    * https://towardsdatascience.com/how-to-code-the-transformer-in-pytorch-24db27c8f9ec
 
 * ViT
     * https://github.com/jeonsworld/ViT-pytorch
