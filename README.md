@@ -153,6 +153,7 @@ Each training and test example is assigned to one of the following labels:
     * https://wikidocs.net/156986
     * https://velog.io/@logger_j_k/PyTorch-Transformer-%EA%B5%AC%ED%98%84
     * https://github.com/eagle705/pytorch-transformer-chatbot
+    * https://towardsdatascience.com/how-to-code-the-transformer-in-pytorch-24db27c8f9ec
 
 * ViT
     * https://github.com/jeonsworld/ViT-pytorch
