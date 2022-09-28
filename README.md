@@ -94,6 +94,12 @@ Each training and test example is assigned to one of the following labels:
         * https://sungin.tistory.com/173
 
 
+## TorchText
+
+* https://tutorials.pytorch.kr/beginner/text_sentiment_ngrams_tutorial.html
+* https://wikidocs.net/60314
+
+
 ## Todo
 
 * CRNN, CTC, RNN/LSTM/GRU
