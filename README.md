@@ -118,6 +118,7 @@ Each training and test example is assigned to one of the following labels:
     * https://www.youtube.com/watch?v=bgsYOGhpxDc
     * https://blog.naver.com/myincizor/222054097305
     * https://www.youtube.com/watch?v=-QH8fRhqFHM
+    * https://pytorch.kr/hub/huggingface_pytorch-transformers
 
 * CRNN, CTC, RNN/LSTM/GRU
     * https://github.com/meijieru/crnn.pytorch
