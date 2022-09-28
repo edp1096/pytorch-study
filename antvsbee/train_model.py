@@ -84,10 +84,10 @@ def imshow(images, classes, class_names):
 # imshow(images, classes, class_names)
 
 # resnet
-# model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
+model = models.resnet18(weights=models.ResNet18_Weights.IMAGENET1K_V1)
 
 # mobilenet
-model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1)
+# model = models.mobilenet_v2(weights=models.MobileNet_V2_Weights.IMAGENET1K_V1)
 
 
 for param in model.parameters():
@@ -95,12 +95,12 @@ for param in model.parameters():
 
 
 # resnet
-# features_count = model.fc.in_features
-# model.fc = nn.Linear(features_count, 2)
+features_count = model.fc.in_features
+model.fc = nn.Linear(features_count, 2)
 
 # mobilenet
-features_count = model.classifier[1].in_features
-model.classifier[1] = nn.Linear(features_count, 2)
+# features_count = model.classifier[1].in_features
+# model.classifier[1] = nn.Linear(features_count, 2)
 
 model.to(device)
 util.printModelInfo(model, batch_size, loaders["train"])

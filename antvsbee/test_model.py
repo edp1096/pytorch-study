@@ -32,14 +32,14 @@ loader_test = DataLoader(dataset_test, batch_size=batch_size, shuffle=True)
 
 
 # resnet
-# model = models.resnet18()
-# features_count = model.fc.in_features
-# model.fc = nn.Linear(features_count, 2)
+model = models.resnet18()
+features_count = model.fc.in_features
+model.fc = nn.Linear(features_count, 2)
 
 # mobilenet
-model = models.mobilenet_v2()
-features_count = model.classifier[1].in_features
-model.classifier[1] = nn.Linear(features_count, 2)
+# model = models.mobilenet_v2()
+# features_count = model.classifier[1].in_features
+# model.classifier[1] = nn.Linear(features_count, 2)
 
 weights = torch.load(model_fname)
 model.load_state_dict(weights)
