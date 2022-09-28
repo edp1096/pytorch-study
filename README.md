@@ -117,6 +117,7 @@ Each training and test example is assigned to one of the following labels:
     * https://paul-hyun.github.io/gpt-01/?fbclid=IwAR3r0IrkT84IISMhKr9z_8yWqH1ygAI47T201rEtx3MR8mR9Oorf6GJqgQs
     * https://www.youtube.com/watch?v=bgsYOGhpxDc
     * https://blog.naver.com/myincizor/222054097305
+    * https://nlpinkorean.github.io/illustrated-transformer
     * https://www.youtube.com/watch?v=-QH8fRhqFHM
     * https://pytorch.kr/hub/huggingface_pytorch-transformers
         * https://pytorch.kr/hub/huggingface_pytorch-transformers
