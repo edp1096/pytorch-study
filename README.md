@@ -12,6 +12,7 @@ pip install matplotlib ; pip install numpy ; pip install pandas ; pip install to
 * https://wikidocs.net/book/2788
 * https://github.com/Harry24k/Pytorch-Basic
 * https://github.com/mrdbourke/pytorch-deep-learning
+* https://wikidocs.net/book/7439
 
 * https://github.com/teddylee777/machine-learning
 * https://fleuret.org/dlc
