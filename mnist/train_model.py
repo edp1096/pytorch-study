@@ -51,14 +51,14 @@ train_loader, valid_loader = dset.getDataLoaders(train_set, valid_set, batch_siz
 # model.classifier[6] = nn.Linear(4096, 10)
 
 # resnet
-# model = models.resnet18()
-# model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-# model.fc = nn.Linear(512, 10)
+model = models.resnet18()
+model.conv1 = nn.Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+model.fc = nn.Linear(512, 10)
 
 # mobilenet
-model = models.mobilenet_v2()
-model.features[0][0] = nn.Conv2d(1, 32, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-model.classifier[1] = nn.Linear(1280, 10)
+# model = models.mobilenet_v2()
+# model.features[0][0] = nn.Conv2d(1, 32, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
+# model.classifier[1] = nn.Linear(1280, 10)
 
 # # rnn, lstm
 # input_size = 28
